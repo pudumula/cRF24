@@ -3,34 +3,34 @@ bin\Debug\rf.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000002b8  00000000  00000000  00000094  2**1
+  0 .text         000005be  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000002  00800060  000002b8  0000034c  2**0
+  1 .data         00000002  00800060  000005be  00000652  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000022  00800062  00800062  0000034e  2**0
+  2 .bss          00000022  00800062  00800062  00000654  2**0
                   ALLOC
-  3 .debug_aranges 00000060  00000000  00000000  0000034e  2**0
+  3 .debug_aranges 00000060  00000000  00000000  00000654  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 000001e4  00000000  00000000  000003ae  2**0
+  4 .debug_pubnames 0000045c  00000000  00000000  000006b4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000074c  00000000  00000000  00000592  2**0
+  5 .debug_info   00000b42  00000000  00000000  00000b10  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000027e  00000000  00000000  00000cde  2**0
+  6 .debug_abbrev 000002fb  00000000  00000000  00001652  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000589  00000000  00000000  00000f5c  2**0
+  7 .debug_line   000009c6  00000000  00000000  0000194d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000190  00000000  00000000  000014e8  2**2
+  8 .debug_frame  00000340  00000000  00000000  00002314  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000256  00000000  00000000  00001678  2**0
+  9 .debug_str    000004b5  00000000  00000000  00002654  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000275  00000000  00000000  000018ce  2**0
+ 10 .debug_loc    0000055c  00000000  00000000  00002b09  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
-   2:	69 c0       	rjmp	.+210    	; 0xd6 <__vector_1>
+   2:	74 c0       	rjmp	.+232    	; 0xec <__vector_1>
    4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
    6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
    8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
@@ -61,8 +61,8 @@ Disassembly of section .text:
   32:	10 e0       	ldi	r17, 0x00	; 0
   34:	a0 e6       	ldi	r26, 0x60	; 96
   36:	b0 e0       	ldi	r27, 0x00	; 0
-  38:	e8 eb       	ldi	r30, 0xB8	; 184
-  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  38:	ee eb       	ldi	r30, 0xBE	; 190
+  3a:	f5 e0       	ldi	r31, 0x05	; 5
   3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
 
 0000003e <.do_copy_data_loop>:
@@ -87,8 +87,8 @@ Disassembly of section .text:
   52:	a4 38       	cpi	r26, 0x84	; 132
   54:	b1 07       	cpc	r27, r17
   56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
-  58:	07 d1       	rcall	.+526    	; 0x268 <main>
-  5a:	2c c1       	rjmp	.+600    	; 0x2b4 <_exit>
+  58:	8a d2       	rcall	.+1300   	; 0x56e <main>
+  5a:	af c2       	rjmp	.+1374   	; 0x5ba <_exit>
 
 0000005c <__bad_interrupt>:
   5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
@@ -117,663 +117,1420 @@ void rfTransmited(void)
 }
   6c:	08 95       	ret
 
-0000006e <rfStatus>:
+0000006e <rfReadChannelPower>:
+
+// reads the channel power
+uint8_t rfReadChannelPower(void)
+{
+    return 0;
+}
+  6e:	80 e0       	ldi	r24, 0x00	; 0
+  70:	08 95       	ret
+
+00000072 <rfSetDynamicPayloadForPipe>:
+
+// enables dynamic payload for a pipe
+void rfSetDynamicPayloadForPipe(uint8_t dymamic)
+{
+
+}
+  72:	08 95       	ret
+
+00000074 <rfClearDynamicPayloadForPipe>:
+
+// enables dynamic payload for a pipe
+void rfClearDynamicPayloadForPipe(uint8_t dymamic)
+{
+
+}
+  74:	08 95       	ret
+
+00000076 <rfEnableGlobalDynamicPayload>:
+
+// enable dynamic payload
+void rfEnableGlobalDynamicPayload(void)
+{
+
+}
+  76:	08 95       	ret
+
+00000078 <rfEnableGlobalAckPayload>:
+
+// enable Ack payload
+void rfEnableGlobalAckPayload(void)
+{
+
+}
+  78:	08 95       	ret
+
+0000007a <rfEnableGlobalDynamicAckPayload>:
+
+// enables dynamic payload
+void rfEnableGlobalDynamicAckPayload(void)
+{
+
+}
+  7a:	08 95       	ret
+
+0000007c <rfTxFifoStatus>:
+
+// status about the TX FIFO status
+uint8_t rfTxFifoStatus(void)
+{
+    return 0;
+}
+  7c:	80 e0       	ldi	r24, 0x00	; 0
+  7e:	08 95       	ret
+
+00000080 <rfRxFifoStatus>:
+
+// status about the RX FIFO status
+uint8_t rfRxFifoStatus(void)
+{
+    return 0;
+}
+  80:	80 e0       	ldi	r24, 0x00	; 0
+  82:	08 95       	ret
+
+00000084 <rfStatus>:
 // rf status
 uint8_t rfStatus(void)
 {
     uint8_t status;
 
     CSN_LOW;
-  6e:	c7 98       	cbi	0x18, 7	; 24
+  84:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData(NOP);
-  70:	8f ef       	ldi	r24, 0xFF	; 255
-  72:	1b d1       	rcall	.+566    	; 0x2aa <spiSendData>
+  86:	8f ef       	ldi	r24, 0xFF	; 255
+  88:	93 d2       	rcall	.+1318   	; 0x5b0 <spiSendData>
     CSN_HIGH;
-  74:	c7 9a       	sbi	0x18, 7	; 24
+  8a:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
-  76:	08 95       	ret
+  8c:	08 95       	ret
 
-00000078 <rfFlushTx>:
+0000008e <rfFlushTx>:
 // flush TX FIFO
 uint8_t rfFlushTx(void)
 {
     uint8_t status;
 
     CSN_LOW;
-  78:	c7 98       	cbi	0x18, 7	; 24
+  8e:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( FLUSH_TX );
-  7a:	81 ee       	ldi	r24, 0xE1	; 225
-  7c:	16 d1       	rcall	.+556    	; 0x2aa <spiSendData>
+  90:	81 ee       	ldi	r24, 0xE1	; 225
+  92:	8e d2       	rcall	.+1308   	; 0x5b0 <spiSendData>
     CSN_HIGH;
-  7e:	c7 9a       	sbi	0x18, 7	; 24
+  94:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
-  80:	08 95       	ret
+  96:	08 95       	ret
 
-00000082 <rfFlushRx>:
+00000098 <rfFlushRx>:
 // flush rx FIFO
 uint8_t rfFlushRx(void)
 {
     uint8_t status;
 
     CSN_LOW;
-  82:	c7 98       	cbi	0x18, 7	; 24
+  98:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( FLUSH_RX );
-  84:	82 ee       	ldi	r24, 0xE2	; 226
-  86:	11 d1       	rcall	.+546    	; 0x2aa <spiSendData>
+  9a:	82 ee       	ldi	r24, 0xE2	; 226
+  9c:	89 d2       	rcall	.+1298   	; 0x5b0 <spiSendData>
     CSN_HIGH;
-  88:	c7 9a       	sbi	0x18, 7	; 24
+  9e:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
-  8a:	08 95       	ret
+  a0:	08 95       	ret
 
-0000008c <rfStopListening>:
+000000a2 <rfStopListening>:
 }
 
 // stops listening
 void rfStopListening(void)
 {
     CE_LOW;
-  8c:	c6 98       	cbi	0x18, 6	; 24
+  a2:	c6 98       	cbi	0x18, 6	; 24
     rfFlushTx();
-  8e:	f4 df       	rcall	.-24     	; 0x78 <rfFlushTx>
+  a4:	f4 df       	rcall	.-24     	; 0x8e <rfFlushTx>
     rfFlushRx();
-  90:	f8 df       	rcall	.-16     	; 0x82 <rfFlushRx>
+  a6:	f8 df       	rcall	.-16     	; 0x98 <rfFlushRx>
 }
-  92:	08 95       	ret
+  a8:	08 95       	ret
 
-00000094 <rfReadPayload>:
+000000aa <rfReadPayload>:
     return status;
 }
 
 // reads the rfPayload into local buffer
 uint8_t rfReadPayload(uint8_t len)
 {
-  94:	ef 92       	push	r14
-  96:	ff 92       	push	r15
-  98:	0f 93       	push	r16
-  9a:	1f 93       	push	r17
-  9c:	f8 2e       	mov	r15, r24
+  aa:	ef 92       	push	r14
+  ac:	ff 92       	push	r15
+  ae:	0f 93       	push	r16
+  b0:	1f 93       	push	r17
+  b2:	f8 2e       	mov	r15, r24
     uint8_t status;
 
     CSN_LOW;
-  9e:	c7 98       	cbi	0x18, 7	; 24
+  b4:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( R_RX_PAYLOAD );
-  a0:	81 e6       	ldi	r24, 0x61	; 97
-  a2:	03 d1       	rcall	.+518    	; 0x2aa <spiSendData>
-  a4:	e8 2e       	mov	r14, r24
-  a6:	0e c0       	rjmp	.+28     	; 0xc4 <rfReadPayload+0x30>
+  b6:	81 e6       	ldi	r24, 0x61	; 97
+  b8:	7b d2       	rcall	.+1270   	; 0x5b0 <spiSendData>
+  ba:	e8 2e       	mov	r14, r24
+  bc:	0e c0       	rjmp	.+28     	; 0xda <rfReadPayload+0x30>
     while ( len-- )
         *rfPtrBuffer++ = spiSendData(NOP);
-  a8:	10 91 60 00 	lds	r17, 0x0060
-  ac:	00 91 61 00 	lds	r16, 0x0061
-  b0:	8f ef       	ldi	r24, 0xFF	; 255
-  b2:	fb d0       	rcall	.+502    	; 0x2aa <spiSendData>
-  b4:	e1 2f       	mov	r30, r17
-  b6:	f0 2f       	mov	r31, r16
-  b8:	81 93       	st	Z+, r24
-  ba:	f0 93 61 00 	sts	0x0061, r31
-  be:	e0 93 60 00 	sts	0x0060, r30
-  c2:	fa 94       	dec	r15
+  be:	10 91 60 00 	lds	r17, 0x0060
+  c2:	00 91 61 00 	lds	r16, 0x0061
+  c6:	8f ef       	ldi	r24, 0xFF	; 255
+  c8:	73 d2       	rcall	.+1254   	; 0x5b0 <spiSendData>
+  ca:	e1 2f       	mov	r30, r17
+  cc:	f0 2f       	mov	r31, r16
+  ce:	81 93       	st	Z+, r24
+  d0:	f0 93 61 00 	sts	0x0061, r31
+  d4:	e0 93 60 00 	sts	0x0060, r30
+  d8:	fa 94       	dec	r15
 {
     uint8_t status;
 
     CSN_LOW;
     status = spiSendData( R_RX_PAYLOAD );
     while ( len-- )
-  c4:	ff 20       	and	r15, r15
-  c6:	81 f7       	brne	.-32     	; 0xa8 <rfReadPayload+0x14>
+  da:	ff 20       	and	r15, r15
+  dc:	81 f7       	brne	.-32     	; 0xbe <rfReadPayload+0x14>
         *rfPtrBuffer++ = spiSendData(NOP);
     CSN_HIGH;
-  c8:	c7 9a       	sbi	0x18, 7	; 24
+  de:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
-  ca:	8e 2d       	mov	r24, r14
-  cc:	1f 91       	pop	r17
-  ce:	0f 91       	pop	r16
-  d0:	ff 90       	pop	r15
-  d2:	ef 90       	pop	r14
-  d4:	08 95       	ret
+  e0:	8e 2d       	mov	r24, r14
+  e2:	1f 91       	pop	r17
+  e4:	0f 91       	pop	r16
+  e6:	ff 90       	pop	r15
+  e8:	ef 90       	pop	r14
+  ea:	08 95       	ret
 
-000000d6 <__vector_1>:
-
-    return status;
-}
-
-ISR(INT0_vect)
+000000ec <__vector_1>:
+/** \brief
+ *
+ *
+ */
+ISR(EXT_INT)
 {
-  d6:	1f 92       	push	r1
-  d8:	0f 92       	push	r0
-  da:	0f b6       	in	r0, 0x3f	; 63
-  dc:	0f 92       	push	r0
-  de:	11 24       	eor	r1, r1
-  e0:	2f 93       	push	r18
-  e2:	3f 93       	push	r19
-  e4:	4f 93       	push	r20
-  e6:	5f 93       	push	r21
-  e8:	6f 93       	push	r22
-  ea:	7f 93       	push	r23
-  ec:	8f 93       	push	r24
-  ee:	9f 93       	push	r25
-  f0:	af 93       	push	r26
-  f2:	bf 93       	push	r27
-  f4:	cf 93       	push	r28
-  f6:	df 93       	push	r29
-  f8:	ef 93       	push	r30
-  fa:	ff 93       	push	r31
+  ec:	1f 92       	push	r1
+  ee:	0f 92       	push	r0
+  f0:	0f b6       	in	r0, 0x3f	; 63
+  f2:	0f 92       	push	r0
+  f4:	11 24       	eor	r1, r1
+  f6:	2f 93       	push	r18
+  f8:	3f 93       	push	r19
+  fa:	4f 93       	push	r20
+  fc:	5f 93       	push	r21
+  fe:	6f 93       	push	r22
+ 100:	7f 93       	push	r23
+ 102:	8f 93       	push	r24
+ 104:	9f 93       	push	r25
+ 106:	af 93       	push	r26
+ 108:	bf 93       	push	r27
+ 10a:	cf 93       	push	r28
+ 10c:	df 93       	push	r29
+ 10e:	ef 93       	push	r30
+ 110:	ff 93       	push	r31
     uint8_t status;
     status = rfStatus();
-  fc:	b8 df       	rcall	.-144    	; 0x6e <rfStatus>
+ 112:	b8 df       	rcall	.-144    	; 0x84 <rfStatus>
 
     if(CHECK_BIT(status, RX_DR))
-  fe:	c8 2f       	mov	r28, r24
- 100:	86 ff       	sbrs	r24, 6
- 102:	05 c0       	rjmp	.+10     	; 0x10e <__vector_1+0x38>
+ 114:	c8 2f       	mov	r28, r24
+ 116:	86 ff       	sbrs	r24, 6
+ 118:	05 c0       	rjmp	.+10     	; 0x124 <__vector_1+0x38>
 
 // handles the reception of rfPacket and filling of the buffer
 void rfReceived(void)
 {
     // check if the receivedFlag is one if so raise assert
     receivedFlag = 1;
- 104:	81 e0       	ldi	r24, 0x01	; 1
- 106:	80 93 62 00 	sts	0x0062, r24
+ 11a:	81 e0       	ldi	r24, 0x01	; 1
+ 11c:	80 93 62 00 	sts	0x0062, r24
     status = rfStatus();
 
     if(CHECK_BIT(status, RX_DR))
     {
         rfReceived();
         rfReadPayload(32);
- 10a:	80 e2       	ldi	r24, 0x20	; 32
- 10c:	c3 df       	rcall	.-122    	; 0x94 <rfReadPayload>
+ 120:	80 e2       	ldi	r24, 0x20	; 32
+ 122:	c3 df       	rcall	.-122    	; 0xaa <rfReadPayload>
     }
 
     if(CHECK_BIT(status, TX_DS))
- 10e:	c5 ff       	sbrs	r28, 5
- 110:	03 c0       	rjmp	.+6      	; 0x118 <__vector_1+0x42>
+ 124:	c5 ff       	sbrs	r28, 5
+ 126:	03 c0       	rjmp	.+6      	; 0x12e <__vector_1+0x42>
 
 // handles the confirmation of transmission
 void rfTransmited(void)
 {
     // check if the transmittedFlag is one if so raise assert
     transmittedFlag = 1;
- 112:	81 e0       	ldi	r24, 0x01	; 1
- 114:	80 93 63 00 	sts	0x0063, r24
+ 128:	81 e0       	ldi	r24, 0x01	; 1
+ 12a:	80 93 63 00 	sts	0x0063, r24
 
     if(CHECK_BIT(status, TX_DS))
     {
         rfTransmited();
     }
 }
- 118:	ff 91       	pop	r31
- 11a:	ef 91       	pop	r30
- 11c:	df 91       	pop	r29
- 11e:	cf 91       	pop	r28
- 120:	bf 91       	pop	r27
- 122:	af 91       	pop	r26
- 124:	9f 91       	pop	r25
- 126:	8f 91       	pop	r24
- 128:	7f 91       	pop	r23
- 12a:	6f 91       	pop	r22
- 12c:	5f 91       	pop	r21
- 12e:	4f 91       	pop	r20
- 130:	3f 91       	pop	r19
- 132:	2f 91       	pop	r18
- 134:	0f 90       	pop	r0
- 136:	0f be       	out	0x3f, r0	; 63
- 138:	0f 90       	pop	r0
- 13a:	1f 90       	pop	r1
- 13c:	18 95       	reti
+ 12e:	ff 91       	pop	r31
+ 130:	ef 91       	pop	r30
+ 132:	df 91       	pop	r29
+ 134:	cf 91       	pop	r28
+ 136:	bf 91       	pop	r27
+ 138:	af 91       	pop	r26
+ 13a:	9f 91       	pop	r25
+ 13c:	8f 91       	pop	r24
+ 13e:	7f 91       	pop	r23
+ 140:	6f 91       	pop	r22
+ 142:	5f 91       	pop	r21
+ 144:	4f 91       	pop	r20
+ 146:	3f 91       	pop	r19
+ 148:	2f 91       	pop	r18
+ 14a:	0f 90       	pop	r0
+ 14c:	0f be       	out	0x3f, r0	; 63
+ 14e:	0f 90       	pop	r0
+ 150:	1f 90       	pop	r1
+ 152:	18 95       	reti
 
-0000013e <rfWritePayload>:
+00000154 <rfWriteAckPayload>:
+    return status;
+}
+
+// writes the rfAckPayload from local buffer
+uint8_t rfWriteAckPayload(const uint8_t* buf, uint8_t len)
+{
+ 154:	0f 93       	push	r16
+ 156:	1f 93       	push	r17
+ 158:	cf 93       	push	r28
+ 15a:	df 93       	push	r29
+ 15c:	ec 01       	movw	r28, r24
+ 15e:	16 2f       	mov	r17, r22
+    uint8_t status;
+
+    CSN_LOW;
+ 160:	c7 98       	cbi	0x18, 7	; 24
+    status = spiSendData( W_ACK_PAYLOAD );
+ 162:	88 ea       	ldi	r24, 0xA8	; 168
+ 164:	25 d2       	rcall	.+1098   	; 0x5b0 <spiSendData>
+ 166:	08 2f       	mov	r16, r24
+ 168:	03 c0       	rjmp	.+6      	; 0x170 <rfWriteAckPayload+0x1c>
+    while ( len-- )
+        spiSendData(*buf++);
+ 16a:	89 91       	ld	r24, Y+
+ 16c:	21 d2       	rcall	.+1090   	; 0x5b0 <spiSendData>
+ 16e:	11 50       	subi	r17, 0x01	; 1
+{
+    uint8_t status;
+
+    CSN_LOW;
+    status = spiSendData( W_ACK_PAYLOAD );
+    while ( len-- )
+ 170:	11 23       	and	r17, r17
+ 172:	d9 f7       	brne	.-10     	; 0x16a <rfWriteAckPayload+0x16>
+        spiSendData(*buf++);
+    CSN_HIGH;
+ 174:	c7 9a       	sbi	0x18, 7	; 24
+
+    return status;
+}
+ 176:	80 2f       	mov	r24, r16
+ 178:	df 91       	pop	r29
+ 17a:	cf 91       	pop	r28
+ 17c:	1f 91       	pop	r17
+ 17e:	0f 91       	pop	r16
+ 180:	08 95       	ret
+
+00000182 <rfWritePayload>:
     return status;
 }
 
 // writes the rfPayload from local buffer
 uint8_t rfWritePayload(const uint8_t* buf, uint8_t len)
 {
- 13e:	0f 93       	push	r16
- 140:	1f 93       	push	r17
- 142:	cf 93       	push	r28
- 144:	df 93       	push	r29
- 146:	ec 01       	movw	r28, r24
- 148:	16 2f       	mov	r17, r22
+ 182:	0f 93       	push	r16
+ 184:	1f 93       	push	r17
+ 186:	cf 93       	push	r28
+ 188:	df 93       	push	r29
+ 18a:	ec 01       	movw	r28, r24
+ 18c:	16 2f       	mov	r17, r22
     uint8_t status;
 
     CSN_LOW;
- 14a:	c7 98       	cbi	0x18, 7	; 24
+ 18e:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_TX_PAYLOAD );
- 14c:	80 ea       	ldi	r24, 0xA0	; 160
- 14e:	ad d0       	rcall	.+346    	; 0x2aa <spiSendData>
- 150:	08 2f       	mov	r16, r24
- 152:	03 c0       	rjmp	.+6      	; 0x15a <rfWritePayload+0x1c>
+ 190:	80 ea       	ldi	r24, 0xA0	; 160
+ 192:	0e d2       	rcall	.+1052   	; 0x5b0 <spiSendData>
+ 194:	08 2f       	mov	r16, r24
+ 196:	03 c0       	rjmp	.+6      	; 0x19e <rfWritePayload+0x1c>
     while ( len-- )
         spiSendData(*buf++);
- 154:	89 91       	ld	r24, Y+
- 156:	a9 d0       	rcall	.+338    	; 0x2aa <spiSendData>
- 158:	11 50       	subi	r17, 0x01	; 1
+ 198:	89 91       	ld	r24, Y+
+ 19a:	0a d2       	rcall	.+1044   	; 0x5b0 <spiSendData>
+ 19c:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
 
     CSN_LOW;
     status = spiSendData( W_TX_PAYLOAD );
     while ( len-- )
- 15a:	11 23       	and	r17, r17
- 15c:	d9 f7       	brne	.-10     	; 0x154 <rfWritePayload+0x16>
+ 19e:	11 23       	and	r17, r17
+ 1a0:	d9 f7       	brne	.-10     	; 0x198 <rfWritePayload+0x16>
         spiSendData(*buf++);
     CSN_HIGH;
- 15e:	c7 9a       	sbi	0x18, 7	; 24
+ 1a2:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
- 160:	80 2f       	mov	r24, r16
- 162:	df 91       	pop	r29
- 164:	cf 91       	pop	r28
- 166:	1f 91       	pop	r17
- 168:	0f 91       	pop	r16
- 16a:	08 95       	ret
+ 1a4:	80 2f       	mov	r24, r16
+ 1a6:	df 91       	pop	r29
+ 1a8:	cf 91       	pop	r28
+ 1aa:	1f 91       	pop	r17
+ 1ac:	0f 91       	pop	r16
+ 1ae:	08 95       	ret
 
-0000016c <rfWriteRegChar>:
+000001b0 <rfWriteRegChar>:
     return status;
 }
 
 // writes to the register
 uint8_t rfWriteRegChar(uint8_t reg, uint8_t value)
 {
- 16c:	0f 93       	push	r16
- 16e:	1f 93       	push	r17
- 170:	06 2f       	mov	r16, r22
+ 1b0:	0f 93       	push	r16
+ 1b2:	1f 93       	push	r17
+ 1b4:	06 2f       	mov	r16, r22
     uint8_t status;
 
     CSN_LOW;
- 172:	c7 98       	cbi	0x18, 7	; 24
+ 1b6:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_REGISTER | reg );
- 174:	80 62       	ori	r24, 0x20	; 32
- 176:	99 d0       	rcall	.+306    	; 0x2aa <spiSendData>
- 178:	18 2f       	mov	r17, r24
+ 1b8:	80 62       	ori	r24, 0x20	; 32
+ 1ba:	fa d1       	rcall	.+1012   	; 0x5b0 <spiSendData>
+ 1bc:	18 2f       	mov	r17, r24
     spiSendData(value);
- 17a:	80 2f       	mov	r24, r16
- 17c:	96 d0       	rcall	.+300    	; 0x2aa <spiSendData>
+ 1be:	80 2f       	mov	r24, r16
+ 1c0:	f7 d1       	rcall	.+1006   	; 0x5b0 <spiSendData>
     CSN_HIGH;
- 17e:	c7 9a       	sbi	0x18, 7	; 24
+ 1c2:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
- 180:	81 2f       	mov	r24, r17
- 182:	1f 91       	pop	r17
- 184:	0f 91       	pop	r16
- 186:	08 95       	ret
+ 1c4:	81 2f       	mov	r24, r17
+ 1c6:	1f 91       	pop	r17
+ 1c8:	0f 91       	pop	r16
+ 1ca:	08 95       	ret
 
-00000188 <rfWriteRegBuff>:
+000001cc <rfWriteRegBuff>:
     return result;
 }
 
 // writes to the register from buffer
 uint8_t rfWriteRegBuff(uint8_t reg, const uint8_t* buf, uint8_t len)
 {
- 188:	0f 93       	push	r16
- 18a:	1f 93       	push	r17
- 18c:	cf 93       	push	r28
- 18e:	df 93       	push	r29
- 190:	eb 01       	movw	r28, r22
- 192:	14 2f       	mov	r17, r20
+ 1cc:	0f 93       	push	r16
+ 1ce:	1f 93       	push	r17
+ 1d0:	cf 93       	push	r28
+ 1d2:	df 93       	push	r29
+ 1d4:	eb 01       	movw	r28, r22
+ 1d6:	14 2f       	mov	r17, r20
     uint8_t status;
 
     CSN_LOW;
- 194:	c7 98       	cbi	0x18, 7	; 24
+ 1d8:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_REGISTER | reg );
- 196:	80 62       	ori	r24, 0x20	; 32
- 198:	88 d0       	rcall	.+272    	; 0x2aa <spiSendData>
- 19a:	08 2f       	mov	r16, r24
- 19c:	03 c0       	rjmp	.+6      	; 0x1a4 <rfWriteRegBuff+0x1c>
+ 1da:	80 62       	ori	r24, 0x20	; 32
+ 1dc:	e9 d1       	rcall	.+978    	; 0x5b0 <spiSendData>
+ 1de:	08 2f       	mov	r16, r24
+ 1e0:	03 c0       	rjmp	.+6      	; 0x1e8 <rfWriteRegBuff+0x1c>
     while ( len-- )
         spiSendData(*buf++);
- 19e:	89 91       	ld	r24, Y+
- 1a0:	84 d0       	rcall	.+264    	; 0x2aa <spiSendData>
- 1a2:	11 50       	subi	r17, 0x01	; 1
+ 1e2:	89 91       	ld	r24, Y+
+ 1e4:	e5 d1       	rcall	.+970    	; 0x5b0 <spiSendData>
+ 1e6:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
 
     CSN_LOW;
     status = spiSendData( W_REGISTER | reg );
     while ( len-- )
- 1a4:	11 23       	and	r17, r17
- 1a6:	d9 f7       	brne	.-10     	; 0x19e <rfWriteRegBuff+0x16>
+ 1e8:	11 23       	and	r17, r17
+ 1ea:	d9 f7       	brne	.-10     	; 0x1e2 <rfWriteRegBuff+0x16>
         spiSendData(*buf++);
     CSN_HIGH;
- 1a8:	c7 9a       	sbi	0x18, 7	; 24
+ 1ec:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
- 1aa:	80 2f       	mov	r24, r16
- 1ac:	df 91       	pop	r29
- 1ae:	cf 91       	pop	r28
- 1b0:	1f 91       	pop	r17
- 1b2:	0f 91       	pop	r16
- 1b4:	08 95       	ret
+ 1ee:	80 2f       	mov	r24, r16
+ 1f0:	df 91       	pop	r29
+ 1f2:	cf 91       	pop	r28
+ 1f4:	1f 91       	pop	r17
+ 1f6:	0f 91       	pop	r16
+ 1f8:	08 95       	ret
 
-000001b6 <rfReadRegChar>:
+000001fa <rfReadRegChar>:
 }
 
 // reads the register and returns it
 uint8_t rfReadRegChar(uint8_t reg)
 {
     CSN_LOW;
- 1b6:	c7 98       	cbi	0x18, 7	; 24
+ 1fa:	c7 98       	cbi	0x18, 7	; 24
     spiSendData( R_REGISTER | reg );
- 1b8:	78 d0       	rcall	.+240    	; 0x2aa <spiSendData>
+ 1fc:	d9 d1       	rcall	.+946    	; 0x5b0 <spiSendData>
     uint8_t result = spiSendData(0xff);
- 1ba:	8f ef       	ldi	r24, 0xFF	; 255
- 1bc:	76 d0       	rcall	.+236    	; 0x2aa <spiSendData>
+ 1fe:	8f ef       	ldi	r24, 0xFF	; 255
+ 200:	d7 d1       	rcall	.+942    	; 0x5b0 <spiSendData>
     CSN_HIGH;
- 1be:	c7 9a       	sbi	0x18, 7	; 24
+ 202:	c7 9a       	sbi	0x18, 7	; 24
 
     return result;
 }
- 1c0:	08 95       	ret
+ 204:	08 95       	ret
 
-000001c2 <rfStartListening>:
+00000206 <rfTransmitCarrier>:
 }
 
-// continuously listens
-void rfStartListening(void)
+// make the channel busy by transmitting carrier wave
+void rfTransmitCarrier(void)
+{
+    rfWriteRegChar(RF_SETUP, SET_BIT(rfReadRegChar(RF_SETUP), CONT_WAVE));
+ 206:	86 e0       	ldi	r24, 0x06	; 6
+ 208:	f8 df       	rcall	.-16     	; 0x1fa <rfReadRegChar>
+ 20a:	68 2f       	mov	r22, r24
+ 20c:	60 68       	ori	r22, 0x80	; 128
+ 20e:	86 e0       	ldi	r24, 0x06	; 6
+ 210:	cf df       	rcall	.-98     	; 0x1b0 <rfWriteRegChar>
+}
+ 212:	08 95       	ret
+
+00000214 <rfSetRetryDelay>:
+    rfWriteRegChar(SETUP_RETR, SET_VALUE(rfReadRegChar(SETUP_RETR), attempts));
+}
+
+// sets the retransmit delays
+void rfSetRetryDelay(uint8_t delay)
+{
+ 214:	1f 93       	push	r17
+ 216:	18 2f       	mov	r17, r24
+    // check for bounds
+    rfWriteRegChar(SETUP_RETR, SET_VALUE(rfReadRegChar(SETUP_RETR), (delay<<4)));
+ 218:	84 e0       	ldi	r24, 0x04	; 4
+ 21a:	ef df       	rcall	.-34     	; 0x1fa <rfReadRegChar>
+ 21c:	12 95       	swap	r17
+ 21e:	10 7f       	andi	r17, 0xF0	; 240
+ 220:	18 2b       	or	r17, r24
+ 222:	84 e0       	ldi	r24, 0x04	; 4
+ 224:	61 2f       	mov	r22, r17
+ 226:	c4 df       	rcall	.-120    	; 0x1b0 <rfWriteRegChar>
+}
+ 228:	1f 91       	pop	r17
+ 22a:	08 95       	ret
+
+0000022c <rfSetRetryAttempts>:
+    }
+}
+
+// set number of retries
+void rfSetRetryAttempts(uint8_t attempts)
+{
+ 22c:	1f 93       	push	r17
+ 22e:	18 2f       	mov	r17, r24
+    // check for bounds
+    rfWriteRegChar(SETUP_RETR, SET_VALUE(rfReadRegChar(SETUP_RETR), attempts));
+ 230:	84 e0       	ldi	r24, 0x04	; 4
+ 232:	e3 df       	rcall	.-58     	; 0x1fa <rfReadRegChar>
+ 234:	18 2b       	or	r17, r24
+ 236:	84 e0       	ldi	r24, 0x04	; 4
+ 238:	61 2f       	mov	r22, r17
+ 23a:	ba df       	rcall	.-140    	; 0x1b0 <rfWriteRegChar>
+}
+ 23c:	1f 91       	pop	r17
+ 23e:	08 95       	ret
+
+00000240 <rfDisablePipeForRx>:
+}
+
+// disable an address pipe
+void rfDisablePipeForRx(uint8_t pipeAddress)
+{
+    if (ERX_P0 == pipeAddress)
+ 240:	88 23       	and	r24, r24
+ 242:	29 f4       	brne	.+10     	; 0x24e <rfDisablePipeForRx+0xe>
+    {
+        rfWriteRegChar(EN_RXADDR, CLEAR_BIT(rfReadRegChar(EN_RXADDR), ERX_P0));
+ 244:	82 e0       	ldi	r24, 0x02	; 2
+ 246:	d9 df       	rcall	.-78     	; 0x1fa <rfReadRegChar>
+ 248:	68 2f       	mov	r22, r24
+ 24a:	6e 7f       	andi	r22, 0xFE	; 254
+ 24c:	1a c0       	rjmp	.+52     	; 0x282 <rfDisablePipeForRx+0x42>
+    }
+    else if (ERX_P1 == pipeAddress)
+ 24e:	81 30       	cpi	r24, 0x01	; 1
+ 250:	29 f4       	brne	.+10     	; 0x25c <rfDisablePipeForRx+0x1c>
+    {
+        rfWriteRegChar(EN_RXADDR, CLEAR_BIT(rfReadRegChar(EN_RXADDR), ERX_P1));
+ 252:	82 e0       	ldi	r24, 0x02	; 2
+ 254:	d2 df       	rcall	.-92     	; 0x1fa <rfReadRegChar>
+ 256:	68 2f       	mov	r22, r24
+ 258:	6d 7f       	andi	r22, 0xFD	; 253
+ 25a:	13 c0       	rjmp	.+38     	; 0x282 <rfDisablePipeForRx+0x42>
+    }
+    else if (ERX_P2 == pipeAddress)
+ 25c:	82 30       	cpi	r24, 0x02	; 2
+ 25e:	21 f4       	brne	.+8      	; 0x268 <rfDisablePipeForRx+0x28>
+    {
+        rfWriteRegChar(EN_RXADDR, CLEAR_BIT(rfReadRegChar(EN_RXADDR), ERX_P2));
+ 260:	cc df       	rcall	.-104    	; 0x1fa <rfReadRegChar>
+ 262:	68 2f       	mov	r22, r24
+ 264:	6b 7f       	andi	r22, 0xFB	; 251
+ 266:	0d c0       	rjmp	.+26     	; 0x282 <rfDisablePipeForRx+0x42>
+    }
+    else if (ERX_P3 == pipeAddress)
+ 268:	83 30       	cpi	r24, 0x03	; 3
+ 26a:	29 f4       	brne	.+10     	; 0x276 <rfDisablePipeForRx+0x36>
+    {
+        rfWriteRegChar(EN_RXADDR, CLEAR_BIT(rfReadRegChar(EN_RXADDR), ERX_P3));
+ 26c:	82 e0       	ldi	r24, 0x02	; 2
+ 26e:	c5 df       	rcall	.-118    	; 0x1fa <rfReadRegChar>
+ 270:	68 2f       	mov	r22, r24
+ 272:	67 7f       	andi	r22, 0xF7	; 247
+ 274:	06 c0       	rjmp	.+12     	; 0x282 <rfDisablePipeForRx+0x42>
+    }
+    else if (ERX_P4 == pipeAddress)
+ 276:	84 30       	cpi	r24, 0x04	; 4
+ 278:	39 f4       	brne	.+14     	; 0x288 <rfDisablePipeForRx+0x48>
+    {
+        rfWriteRegChar(EN_RXADDR, CLEAR_BIT(rfReadRegChar(EN_RXADDR), ERX_P4));
+ 27a:	82 e0       	ldi	r24, 0x02	; 2
+ 27c:	be df       	rcall	.-132    	; 0x1fa <rfReadRegChar>
+ 27e:	68 2f       	mov	r22, r24
+ 280:	6f 7e       	andi	r22, 0xEF	; 239
+ 282:	82 e0       	ldi	r24, 0x02	; 2
+ 284:	95 df       	rcall	.-214    	; 0x1b0 <rfWriteRegChar>
+ 286:	08 95       	ret
+    }
+    else if (ERX_P5 == pipeAddress)
+ 288:	85 30       	cpi	r24, 0x05	; 5
+ 28a:	31 f4       	brne	.+12     	; 0x298 <rfDisablePipeForRx+0x58>
+    {
+        rfWriteRegChar(EN_RXADDR, CLEAR_BIT(rfReadRegChar(EN_RXADDR), ERX_P5));
+ 28c:	82 e0       	ldi	r24, 0x02	; 2
+ 28e:	b5 df       	rcall	.-150    	; 0x1fa <rfReadRegChar>
+ 290:	68 2f       	mov	r22, r24
+ 292:	6f 7d       	andi	r22, 0xDF	; 223
+ 294:	82 e0       	ldi	r24, 0x02	; 2
+ 296:	8c df       	rcall	.-232    	; 0x1b0 <rfWriteRegChar>
+ 298:	08 95       	ret
+
+0000029a <rfEnablePipeForRx>:
+}
+
+// enables an address pipe
+void rfEnablePipeForRx(uint8_t pipeAddress)
+{
+    if (ERX_P0 == pipeAddress)
+ 29a:	88 23       	and	r24, r24
+ 29c:	29 f4       	brne	.+10     	; 0x2a8 <rfEnablePipeForRx+0xe>
+    {
+        rfWriteRegChar(EN_RXADDR, SET_BIT(rfReadRegChar(EN_RXADDR), ERX_P0));
+ 29e:	82 e0       	ldi	r24, 0x02	; 2
+ 2a0:	ac df       	rcall	.-168    	; 0x1fa <rfReadRegChar>
+ 2a2:	68 2f       	mov	r22, r24
+ 2a4:	61 60       	ori	r22, 0x01	; 1
+ 2a6:	1a c0       	rjmp	.+52     	; 0x2dc <rfEnablePipeForRx+0x42>
+    }
+    else if (ERX_P1 == pipeAddress)
+ 2a8:	81 30       	cpi	r24, 0x01	; 1
+ 2aa:	29 f4       	brne	.+10     	; 0x2b6 <rfEnablePipeForRx+0x1c>
+    {
+        rfWriteRegChar(EN_RXADDR, SET_BIT(rfReadRegChar(EN_RXADDR), ERX_P1));
+ 2ac:	82 e0       	ldi	r24, 0x02	; 2
+ 2ae:	a5 df       	rcall	.-182    	; 0x1fa <rfReadRegChar>
+ 2b0:	68 2f       	mov	r22, r24
+ 2b2:	62 60       	ori	r22, 0x02	; 2
+ 2b4:	13 c0       	rjmp	.+38     	; 0x2dc <rfEnablePipeForRx+0x42>
+    }
+    else if (ERX_P2 == pipeAddress)
+ 2b6:	82 30       	cpi	r24, 0x02	; 2
+ 2b8:	21 f4       	brne	.+8      	; 0x2c2 <rfEnablePipeForRx+0x28>
+    {
+        rfWriteRegChar(EN_RXADDR, SET_BIT(rfReadRegChar(EN_RXADDR), ERX_P2));
+ 2ba:	9f df       	rcall	.-194    	; 0x1fa <rfReadRegChar>
+ 2bc:	68 2f       	mov	r22, r24
+ 2be:	64 60       	ori	r22, 0x04	; 4
+ 2c0:	0d c0       	rjmp	.+26     	; 0x2dc <rfEnablePipeForRx+0x42>
+    }
+    else if (ERX_P3 == pipeAddress)
+ 2c2:	83 30       	cpi	r24, 0x03	; 3
+ 2c4:	29 f4       	brne	.+10     	; 0x2d0 <rfEnablePipeForRx+0x36>
+    {
+        rfWriteRegChar(EN_RXADDR, SET_BIT(rfReadRegChar(EN_RXADDR), ERX_P3));
+ 2c6:	82 e0       	ldi	r24, 0x02	; 2
+ 2c8:	98 df       	rcall	.-208    	; 0x1fa <rfReadRegChar>
+ 2ca:	68 2f       	mov	r22, r24
+ 2cc:	68 60       	ori	r22, 0x08	; 8
+ 2ce:	06 c0       	rjmp	.+12     	; 0x2dc <rfEnablePipeForRx+0x42>
+    }
+    else if (ERX_P4 == pipeAddress)
+ 2d0:	84 30       	cpi	r24, 0x04	; 4
+ 2d2:	39 f4       	brne	.+14     	; 0x2e2 <rfEnablePipeForRx+0x48>
+    {
+        rfWriteRegChar(EN_RXADDR, SET_BIT(rfReadRegChar(EN_RXADDR), ERX_P4));
+ 2d4:	82 e0       	ldi	r24, 0x02	; 2
+ 2d6:	91 df       	rcall	.-222    	; 0x1fa <rfReadRegChar>
+ 2d8:	68 2f       	mov	r22, r24
+ 2da:	60 61       	ori	r22, 0x10	; 16
+ 2dc:	82 e0       	ldi	r24, 0x02	; 2
+ 2de:	68 df       	rcall	.-304    	; 0x1b0 <rfWriteRegChar>
+ 2e0:	08 95       	ret
+    }
+    else if (ERX_P5 == pipeAddress)
+ 2e2:	85 30       	cpi	r24, 0x05	; 5
+ 2e4:	31 f4       	brne	.+12     	; 0x2f2 <rfEnablePipeForRx+0x58>
+    {
+        rfWriteRegChar(EN_RXADDR, SET_BIT(rfReadRegChar(EN_RXADDR), ERX_P5));
+ 2e6:	82 e0       	ldi	r24, 0x02	; 2
+ 2e8:	88 df       	rcall	.-240    	; 0x1fa <rfReadRegChar>
+ 2ea:	68 2f       	mov	r22, r24
+ 2ec:	60 62       	ori	r22, 0x20	; 32
+ 2ee:	82 e0       	ldi	r24, 0x02	; 2
+ 2f0:	5f df       	rcall	.-322    	; 0x1b0 <rfWriteRegChar>
+ 2f2:	08 95       	ret
+
+000002f4 <rfClearAutoAckForPipe>:
+}
+
+// Clears autoack on a pipe
+void rfClearAutoAckForPipe(uint8_t pipeAddress)
+{
+    if (ENAA_P0 == pipeAddress)
+ 2f4:	88 23       	and	r24, r24
+ 2f6:	29 f4       	brne	.+10     	; 0x302 <rfClearAutoAckForPipe+0xe>
+    {
+        rfWriteRegChar(EN_AA, CLEAR_BIT(rfReadRegChar(EN_AA), ENAA_P0));
+ 2f8:	81 e0       	ldi	r24, 0x01	; 1
+ 2fa:	7f df       	rcall	.-258    	; 0x1fa <rfReadRegChar>
+ 2fc:	68 2f       	mov	r22, r24
+ 2fe:	6e 7f       	andi	r22, 0xFE	; 254
+ 300:	1a c0       	rjmp	.+52     	; 0x336 <rfClearAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P1 == pipeAddress)
+ 302:	81 30       	cpi	r24, 0x01	; 1
+ 304:	21 f4       	brne	.+8      	; 0x30e <rfClearAutoAckForPipe+0x1a>
+    {
+        rfWriteRegChar(EN_AA, CLEAR_BIT(rfReadRegChar(EN_AA), ENAA_P1));
+ 306:	79 df       	rcall	.-270    	; 0x1fa <rfReadRegChar>
+ 308:	68 2f       	mov	r22, r24
+ 30a:	6d 7f       	andi	r22, 0xFD	; 253
+ 30c:	14 c0       	rjmp	.+40     	; 0x336 <rfClearAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P2 == pipeAddress)
+ 30e:	82 30       	cpi	r24, 0x02	; 2
+ 310:	29 f4       	brne	.+10     	; 0x31c <rfClearAutoAckForPipe+0x28>
+    {
+        rfWriteRegChar(EN_AA, CLEAR_BIT(rfReadRegChar(EN_AA), ENAA_P2));
+ 312:	81 e0       	ldi	r24, 0x01	; 1
+ 314:	72 df       	rcall	.-284    	; 0x1fa <rfReadRegChar>
+ 316:	68 2f       	mov	r22, r24
+ 318:	6b 7f       	andi	r22, 0xFB	; 251
+ 31a:	0d c0       	rjmp	.+26     	; 0x336 <rfClearAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P3 == pipeAddress)
+ 31c:	83 30       	cpi	r24, 0x03	; 3
+ 31e:	29 f4       	brne	.+10     	; 0x32a <rfClearAutoAckForPipe+0x36>
+    {
+        rfWriteRegChar(EN_AA, CLEAR_BIT(rfReadRegChar(EN_AA), ENAA_P3));
+ 320:	81 e0       	ldi	r24, 0x01	; 1
+ 322:	6b df       	rcall	.-298    	; 0x1fa <rfReadRegChar>
+ 324:	68 2f       	mov	r22, r24
+ 326:	67 7f       	andi	r22, 0xF7	; 247
+ 328:	06 c0       	rjmp	.+12     	; 0x336 <rfClearAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P4 == pipeAddress)
+ 32a:	84 30       	cpi	r24, 0x04	; 4
+ 32c:	39 f4       	brne	.+14     	; 0x33c <rfClearAutoAckForPipe+0x48>
+    {
+        rfWriteRegChar(EN_AA, CLEAR_BIT(rfReadRegChar(EN_AA), ENAA_P4));
+ 32e:	81 e0       	ldi	r24, 0x01	; 1
+ 330:	64 df       	rcall	.-312    	; 0x1fa <rfReadRegChar>
+ 332:	68 2f       	mov	r22, r24
+ 334:	6f 7e       	andi	r22, 0xEF	; 239
+ 336:	81 e0       	ldi	r24, 0x01	; 1
+ 338:	3b df       	rcall	.-394    	; 0x1b0 <rfWriteRegChar>
+ 33a:	08 95       	ret
+    }
+    else if (ENAA_P5 == pipeAddress)
+ 33c:	85 30       	cpi	r24, 0x05	; 5
+ 33e:	31 f4       	brne	.+12     	; 0x34c <rfClearAutoAckForPipe+0x58>
+    {
+        rfWriteRegChar(EN_AA, CLEAR_BIT(rfReadRegChar(EN_AA), ENAA_P5));
+ 340:	81 e0       	ldi	r24, 0x01	; 1
+ 342:	5b df       	rcall	.-330    	; 0x1fa <rfReadRegChar>
+ 344:	68 2f       	mov	r22, r24
+ 346:	6f 7d       	andi	r22, 0xDF	; 223
+ 348:	81 e0       	ldi	r24, 0x01	; 1
+ 34a:	32 df       	rcall	.-412    	; 0x1b0 <rfWriteRegChar>
+ 34c:	08 95       	ret
+
+0000034e <rfSetAutoAckForPipe>:
+}
+
+// sets AutoAck on a pipe
+void rfSetAutoAckForPipe(uint8_t pipeAddress)
+{
+    if (ENAA_P0 == pipeAddress)
+ 34e:	88 23       	and	r24, r24
+ 350:	29 f4       	brne	.+10     	; 0x35c <rfSetAutoAckForPipe+0xe>
+    {
+        rfWriteRegChar(EN_AA, SET_BIT(rfReadRegChar(EN_AA), ENAA_P0));
+ 352:	81 e0       	ldi	r24, 0x01	; 1
+ 354:	52 df       	rcall	.-348    	; 0x1fa <rfReadRegChar>
+ 356:	68 2f       	mov	r22, r24
+ 358:	61 60       	ori	r22, 0x01	; 1
+ 35a:	1a c0       	rjmp	.+52     	; 0x390 <rfSetAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P1 == pipeAddress)
+ 35c:	81 30       	cpi	r24, 0x01	; 1
+ 35e:	21 f4       	brne	.+8      	; 0x368 <rfSetAutoAckForPipe+0x1a>
+    {
+        rfWriteRegChar(EN_AA, SET_BIT(rfReadRegChar(EN_AA), ENAA_P1));
+ 360:	4c df       	rcall	.-360    	; 0x1fa <rfReadRegChar>
+ 362:	68 2f       	mov	r22, r24
+ 364:	62 60       	ori	r22, 0x02	; 2
+ 366:	14 c0       	rjmp	.+40     	; 0x390 <rfSetAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P2 == pipeAddress)
+ 368:	82 30       	cpi	r24, 0x02	; 2
+ 36a:	29 f4       	brne	.+10     	; 0x376 <rfSetAutoAckForPipe+0x28>
+    {
+        rfWriteRegChar(EN_AA, SET_BIT(rfReadRegChar(EN_AA), ENAA_P2));
+ 36c:	81 e0       	ldi	r24, 0x01	; 1
+ 36e:	45 df       	rcall	.-374    	; 0x1fa <rfReadRegChar>
+ 370:	68 2f       	mov	r22, r24
+ 372:	64 60       	ori	r22, 0x04	; 4
+ 374:	0d c0       	rjmp	.+26     	; 0x390 <rfSetAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P3 == pipeAddress)
+ 376:	83 30       	cpi	r24, 0x03	; 3
+ 378:	29 f4       	brne	.+10     	; 0x384 <rfSetAutoAckForPipe+0x36>
+    {
+        rfWriteRegChar(EN_AA, SET_BIT(rfReadRegChar(EN_AA), ENAA_P3));
+ 37a:	81 e0       	ldi	r24, 0x01	; 1
+ 37c:	3e df       	rcall	.-388    	; 0x1fa <rfReadRegChar>
+ 37e:	68 2f       	mov	r22, r24
+ 380:	68 60       	ori	r22, 0x08	; 8
+ 382:	06 c0       	rjmp	.+12     	; 0x390 <rfSetAutoAckForPipe+0x42>
+    }
+    else if (ENAA_P4 == pipeAddress)
+ 384:	84 30       	cpi	r24, 0x04	; 4
+ 386:	39 f4       	brne	.+14     	; 0x396 <rfSetAutoAckForPipe+0x48>
+    {
+        rfWriteRegChar(EN_AA, SET_BIT(rfReadRegChar(EN_AA), ENAA_P4));
+ 388:	81 e0       	ldi	r24, 0x01	; 1
+ 38a:	37 df       	rcall	.-402    	; 0x1fa <rfReadRegChar>
+ 38c:	68 2f       	mov	r22, r24
+ 38e:	60 61       	ori	r22, 0x10	; 16
+ 390:	81 e0       	ldi	r24, 0x01	; 1
+ 392:	0e df       	rcall	.-484    	; 0x1b0 <rfWriteRegChar>
+ 394:	08 95       	ret
+    }
+    else if (ENAA_P5 == pipeAddress)
+ 396:	85 30       	cpi	r24, 0x05	; 5
+ 398:	31 f4       	brne	.+12     	; 0x3a6 <rfSetAutoAckForPipe+0x58>
+    {
+        rfWriteRegChar(EN_AA, SET_BIT(rfReadRegChar(EN_AA), ENAA_P5));
+ 39a:	81 e0       	ldi	r24, 0x01	; 1
+ 39c:	2e df       	rcall	.-420    	; 0x1fa <rfReadRegChar>
+ 39e:	68 2f       	mov	r22, r24
+ 3a0:	60 62       	ori	r22, 0x20	; 32
+ 3a2:	81 e0       	ldi	r24, 0x01	; 1
+ 3a4:	05 df       	rcall	.-502    	; 0x1b0 <rfWriteRegChar>
+ 3a6:	08 95       	ret
+
+000003a8 <rfSetToReceiveMode>:
+}
+
+// sets the radio to receive mode
+void rfSetToReceiveMode(void)
 {
     CE_LOW;
- 1c2:	c6 98       	cbi	0x18, 6	; 24
+ 3a8:	c6 98       	cbi	0x18, 6	; 24
     rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PRIM_RX));
- 1c4:	80 e0       	ldi	r24, 0x00	; 0
- 1c6:	f7 df       	rcall	.-18     	; 0x1b6 <rfReadRegChar>
- 1c8:	68 2f       	mov	r22, r24
- 1ca:	61 60       	ori	r22, 0x01	; 1
- 1cc:	80 e0       	ldi	r24, 0x00	; 0
- 1ce:	ce df       	rcall	.-100    	; 0x16c <rfWriteRegChar>
+ 3aa:	80 e0       	ldi	r24, 0x00	; 0
+ 3ac:	26 df       	rcall	.-436    	; 0x1fa <rfReadRegChar>
+ 3ae:	68 2f       	mov	r22, r24
+ 3b0:	61 60       	ori	r22, 0x01	; 1
+ 3b2:	80 e0       	ldi	r24, 0x00	; 0
+ 3b4:	fd de       	rcall	.-518    	; 0x1b0 <rfWriteRegChar>
     milliseconds can be achieved.
  */
 void
 _delay_loop_2(uint16_t __count)
 {
 	__asm__ volatile (
- 1d0:	84 e0       	ldi	r24, 0x04	; 4
- 1d2:	91 e0       	ldi	r25, 0x01	; 1
- 1d4:	01 97       	sbiw	r24, 0x01	; 1
- 1d6:	f1 f7       	brne	.-4      	; 0x1d4 <rfStartListening+0x12>
+ 3b6:	84 e0       	ldi	r24, 0x04	; 4
+ 3b8:	91 e0       	ldi	r25, 0x01	; 1
+ 3ba:	01 97       	sbiw	r24, 0x01	; 1
+ 3bc:	f1 f7       	brne	.-4      	; 0x3ba <rfSetToReceiveMode+0x12>
     _delay_us(130);
     CE_HIGH;
- 1d8:	c6 9a       	sbi	0x18, 6	; 24
+ 3be:	c6 9a       	sbi	0x18, 6	; 24
 }
- 1da:	08 95       	ret
+ 3c0:	08 95       	ret
 
-000001dc <rfToPowerDown>:
+000003c2 <rfSetToTransmitMode>:
 }
 
-// changes the state of the tranciver to powerDown mode
+// sets the radio to transmit mode
+void rfSetToTransmitMode(void)
+{
+    CE_LOW;
+ 3c2:	c6 98       	cbi	0x18, 6	; 24
+    rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), PRIM_RX));
+ 3c4:	80 e0       	ldi	r24, 0x00	; 0
+ 3c6:	19 df       	rcall	.-462    	; 0x1fa <rfReadRegChar>
+ 3c8:	68 2f       	mov	r22, r24
+ 3ca:	6e 7f       	andi	r22, 0xFE	; 254
+ 3cc:	80 e0       	ldi	r24, 0x00	; 0
+ 3ce:	f0 de       	rcall	.-544    	; 0x1b0 <rfWriteRegChar>
+ 3d0:	84 e0       	ldi	r24, 0x04	; 4
+ 3d2:	91 e0       	ldi	r25, 0x01	; 1
+ 3d4:	01 97       	sbiw	r24, 0x01	; 1
+ 3d6:	f1 f7       	brne	.-4      	; 0x3d4 <rfSetToTransmitMode+0x12>
+    _delay_us(130);
+}
+ 3d8:	08 95       	ret
+
+000003da <rfClearInterruptMask>:
+}
+
+// clears interrupt mask
+void rfClearInterruptMask(uint8_t mask)
+{
+    if (MASK_RX_DR == mask)
+ 3da:	86 30       	cpi	r24, 0x06	; 6
+ 3dc:	29 f4       	brne	.+10     	; 0x3e8 <rfClearInterruptMask+0xe>
+    {
+        rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), MASK_RX_DR));
+ 3de:	80 e0       	ldi	r24, 0x00	; 0
+ 3e0:	0c df       	rcall	.-488    	; 0x1fa <rfReadRegChar>
+ 3e2:	68 2f       	mov	r22, r24
+ 3e4:	6f 7b       	andi	r22, 0xBF	; 191
+ 3e6:	06 c0       	rjmp	.+12     	; 0x3f4 <rfClearInterruptMask+0x1a>
+    }
+    else if (MASK_TX_DS == mask)
+ 3e8:	85 30       	cpi	r24, 0x05	; 5
+ 3ea:	39 f4       	brne	.+14     	; 0x3fa <rfClearInterruptMask+0x20>
+    {
+        rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), MASK_TX_DS));
+ 3ec:	80 e0       	ldi	r24, 0x00	; 0
+ 3ee:	05 df       	rcall	.-502    	; 0x1fa <rfReadRegChar>
+ 3f0:	68 2f       	mov	r22, r24
+ 3f2:	6f 7d       	andi	r22, 0xDF	; 223
+ 3f4:	80 e0       	ldi	r24, 0x00	; 0
+ 3f6:	dc de       	rcall	.-584    	; 0x1b0 <rfWriteRegChar>
+ 3f8:	08 95       	ret
+    }
+    else if (MASK_MAX_RT == mask)
+ 3fa:	84 30       	cpi	r24, 0x04	; 4
+ 3fc:	31 f4       	brne	.+12     	; 0x40a <rfClearInterruptMask+0x30>
+    {
+        rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), MASK_MAX_RT));
+ 3fe:	80 e0       	ldi	r24, 0x00	; 0
+ 400:	fc de       	rcall	.-520    	; 0x1fa <rfReadRegChar>
+ 402:	68 2f       	mov	r22, r24
+ 404:	6f 7e       	andi	r22, 0xEF	; 239
+ 406:	80 e0       	ldi	r24, 0x00	; 0
+ 408:	d3 de       	rcall	.-602    	; 0x1b0 <rfWriteRegChar>
+ 40a:	08 95       	ret
+
+0000040c <rfSetInterruptMask>:
+}
+
+// sets interrupt mask
+void rfSetInterruptMask(uint8_t mask)
+{
+    if (MASK_RX_DR == mask)
+ 40c:	86 30       	cpi	r24, 0x06	; 6
+ 40e:	29 f4       	brne	.+10     	; 0x41a <rfSetInterruptMask+0xe>
+    {
+        rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), MASK_RX_DR));
+ 410:	80 e0       	ldi	r24, 0x00	; 0
+ 412:	f3 de       	rcall	.-538    	; 0x1fa <rfReadRegChar>
+ 414:	68 2f       	mov	r22, r24
+ 416:	60 64       	ori	r22, 0x40	; 64
+ 418:	06 c0       	rjmp	.+12     	; 0x426 <rfSetInterruptMask+0x1a>
+    }
+    else if (MASK_TX_DS == mask)
+ 41a:	85 30       	cpi	r24, 0x05	; 5
+ 41c:	39 f4       	brne	.+14     	; 0x42c <rfSetInterruptMask+0x20>
+    {
+        rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), MASK_TX_DS));
+ 41e:	80 e0       	ldi	r24, 0x00	; 0
+ 420:	ec de       	rcall	.-552    	; 0x1fa <rfReadRegChar>
+ 422:	68 2f       	mov	r22, r24
+ 424:	60 62       	ori	r22, 0x20	; 32
+ 426:	80 e0       	ldi	r24, 0x00	; 0
+ 428:	c3 de       	rcall	.-634    	; 0x1b0 <rfWriteRegChar>
+ 42a:	08 95       	ret
+    }
+    else if (MASK_MAX_RT == mask)
+ 42c:	84 30       	cpi	r24, 0x04	; 4
+ 42e:	31 f4       	brne	.+12     	; 0x43c <rfSetInterruptMask+0x30>
+    {
+        rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), MASK_MAX_RT));
+ 430:	80 e0       	ldi	r24, 0x00	; 0
+ 432:	e3 de       	rcall	.-570    	; 0x1fa <rfReadRegChar>
+ 434:	68 2f       	mov	r22, r24
+ 436:	60 61       	ori	r22, 0x10	; 16
+ 438:	80 e0       	ldi	r24, 0x00	; 0
+ 43a:	ba de       	rcall	.-652    	; 0x1b0 <rfWriteRegChar>
+ 43c:	08 95       	ret
+
+0000043e <rfSetCrcScheme>:
+}
+
+// sets the number of crc bytes
+void rfSetCrcScheme(uint8_t scheme)
+{
+    if (scheme)
+ 43e:	88 23       	and	r24, r24
+ 440:	31 f0       	breq	.+12     	; 0x44e <rfSetCrcScheme+0x10>
+    {
+        rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), CRCO));
+ 442:	80 e0       	ldi	r24, 0x00	; 0
+ 444:	da de       	rcall	.-588    	; 0x1fa <rfReadRegChar>
+ 446:	68 2f       	mov	r22, r24
+ 448:	64 60       	ori	r22, 0x04	; 4
+ 44a:	80 e0       	ldi	r24, 0x00	; 0
+ 44c:	b1 de       	rcall	.-670    	; 0x1b0 <rfWriteRegChar>
+ 44e:	08 95       	ret
+
+00000450 <rfDisableCRC>:
+ * \return NonReturning
+ *
+ */
+void rfDisableCRC(void)
+{
+    rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), EN_CRC));
+ 450:	80 e0       	ldi	r24, 0x00	; 0
+ 452:	d3 de       	rcall	.-602    	; 0x1fa <rfReadRegChar>
+ 454:	68 2f       	mov	r22, r24
+ 456:	67 7f       	andi	r22, 0xF7	; 247
+ 458:	80 e0       	ldi	r24, 0x00	; 0
+ 45a:	aa de       	rcall	.-684    	; 0x1b0 <rfWriteRegChar>
+}
+ 45c:	08 95       	ret
+
+0000045e <rfEnableCRC>:
+ * \return NonReturning
+ *
+ */
+void rfEnableCRC(void)
+{
+    rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), EN_CRC));
+ 45e:	80 e0       	ldi	r24, 0x00	; 0
+ 460:	cc de       	rcall	.-616    	; 0x1fa <rfReadRegChar>
+ 462:	68 2f       	mov	r22, r24
+ 464:	68 60       	ori	r22, 0x08	; 8
+ 466:	80 e0       	ldi	r24, 0x00	; 0
+ 468:	a3 de       	rcall	.-698    	; 0x1b0 <rfWriteRegChar>
+}
+ 46a:	08 95       	ret
+
+0000046c <rfSetAddressWidth>:
+    rfWriteRegChar(RF_SETUP, SET_VALUE(rfReadRegChar(RF_SETUP), (((1<<3) & dataRate)<<3) | ((1<<5) & dataRate<<5)));
+}
+
+// sets receive address width
+void rfSetAddressWidth(uint8_t addressWidth)
+{
+ 46c:	1f 93       	push	r17
+ 46e:	18 2f       	mov	r17, r24
+    // check bounds
+    rfWriteRegChar(SETUP_AW, SET_VALUE(rfReadRegChar(SETUP_AW), addressWidth));
+ 470:	83 e0       	ldi	r24, 0x03	; 3
+ 472:	c3 de       	rcall	.-634    	; 0x1fa <rfReadRegChar>
+ 474:	18 2b       	or	r17, r24
+ 476:	83 e0       	ldi	r24, 0x03	; 3
+ 478:	61 2f       	mov	r22, r17
+ 47a:	9a de       	rcall	.-716    	; 0x1b0 <rfWriteRegChar>
+}
+ 47c:	1f 91       	pop	r17
+ 47e:	08 95       	ret
+
+00000480 <rfSetDataRate>:
+    rfWriteRegChar(RF_SETUP, SET_VALUE(rfReadRegChar(RF_SETUP), (power<<1)));
+}
+
+// sets the transmit data-rate
+void rfSetDataRate(uint8_t dataRate)
+{
+ 480:	0f 93       	push	r16
+ 482:	1f 93       	push	r17
+ 484:	08 2f       	mov	r16, r24
+    // check bounds
+    rfWriteRegChar(RF_SETUP, SET_VALUE(rfReadRegChar(RF_SETUP), (((1<<3) & dataRate)<<3) | ((1<<5) & dataRate<<5)));
+ 486:	86 e0       	ldi	r24, 0x06	; 6
+ 488:	b8 de       	rcall	.-656    	; 0x1fa <rfReadRegChar>
+ 48a:	10 e0       	ldi	r17, 0x00	; 0
+ 48c:	98 01       	movw	r18, r16
+ 48e:	28 70       	andi	r18, 0x08	; 8
+ 490:	30 70       	andi	r19, 0x00	; 0
+ 492:	43 e0       	ldi	r20, 0x03	; 3
+ 494:	22 0f       	add	r18, r18
+ 496:	33 1f       	adc	r19, r19
+ 498:	4a 95       	dec	r20
+ 49a:	e1 f7       	brne	.-8      	; 0x494 <rfSetDataRate+0x14>
+ 49c:	95 e0       	ldi	r25, 0x05	; 5
+ 49e:	00 0f       	add	r16, r16
+ 4a0:	11 1f       	adc	r17, r17
+ 4a2:	9a 95       	dec	r25
+ 4a4:	e1 f7       	brne	.-8      	; 0x49e <rfSetDataRate+0x1e>
+ 4a6:	00 72       	andi	r16, 0x20	; 32
+ 4a8:	02 2b       	or	r16, r18
+ 4aa:	08 2b       	or	r16, r24
+ 4ac:	86 e0       	ldi	r24, 0x06	; 6
+ 4ae:	60 2f       	mov	r22, r16
+ 4b0:	7f de       	rcall	.-770    	; 0x1b0 <rfWriteRegChar>
+}
+ 4b2:	1f 91       	pop	r17
+ 4b4:	0f 91       	pop	r16
+ 4b6:	08 95       	ret
+
+000004b8 <rfSetTransmitPower>:
+    rfWriteRegChar(RF_CH, SET_VALUE(rfReadRegChar(RF_CH), channel));
+}
+
+// sets the transmit power
+void rfSetTransmitPower(uint8_t power)
+{
+ 4b8:	1f 93       	push	r17
+ 4ba:	18 2f       	mov	r17, r24
+    // check bounds
+    rfWriteRegChar(RF_SETUP, SET_VALUE(rfReadRegChar(RF_SETUP), (power<<1)));
+ 4bc:	86 e0       	ldi	r24, 0x06	; 6
+ 4be:	9d de       	rcall	.-710    	; 0x1fa <rfReadRegChar>
+ 4c0:	11 0f       	add	r17, r17
+ 4c2:	18 2b       	or	r17, r24
+ 4c4:	86 e0       	ldi	r24, 0x06	; 6
+ 4c6:	61 2f       	mov	r22, r17
+ 4c8:	73 de       	rcall	.-794    	; 0x1b0 <rfWriteRegChar>
+}
+ 4ca:	1f 91       	pop	r17
+ 4cc:	08 95       	ret
+
+000004ce <rfSetChannel>:
+    return status;
+}
+
+// sets the radio frequency
+void rfSetChannel(uint8_t channel)
+{
+ 4ce:	1f 93       	push	r17
+ 4d0:	18 2f       	mov	r17, r24
+    // check bounds
+    rfWriteRegChar(RF_CH, SET_VALUE(rfReadRegChar(RF_CH), channel));
+ 4d2:	85 e0       	ldi	r24, 0x05	; 5
+ 4d4:	92 de       	rcall	.-732    	; 0x1fa <rfReadRegChar>
+ 4d6:	18 2b       	or	r17, r24
+ 4d8:	85 e0       	ldi	r24, 0x05	; 5
+ 4da:	61 2f       	mov	r22, r17
+ 4dc:	69 de       	rcall	.-814    	; 0x1b0 <rfWriteRegChar>
+}
+ 4de:	1f 91       	pop	r17
+ 4e0:	08 95       	ret
+
+000004e2 <rfToPowerDown>:
+}
+
+// changes the state of the transceiver to powerDown mode
 void rfToPowerDown(void)
 {
     rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), PWR_UP));
- 1dc:	80 e0       	ldi	r24, 0x00	; 0
- 1de:	eb df       	rcall	.-42     	; 0x1b6 <rfReadRegChar>
- 1e0:	68 2f       	mov	r22, r24
- 1e2:	6d 7f       	andi	r22, 0xFD	; 253
- 1e4:	80 e0       	ldi	r24, 0x00	; 0
- 1e6:	c2 df       	rcall	.-124    	; 0x16c <rfWriteRegChar>
+ 4e2:	80 e0       	ldi	r24, 0x00	; 0
+ 4e4:	8a de       	rcall	.-748    	; 0x1fa <rfReadRegChar>
+ 4e6:	68 2f       	mov	r22, r24
+ 4e8:	6d 7f       	andi	r22, 0xFD	; 253
+ 4ea:	80 e0       	ldi	r24, 0x00	; 0
+ 4ec:	61 de       	rcall	.-830    	; 0x1b0 <rfWriteRegChar>
+    CE_LOW;
+ 4ee:	c6 98       	cbi	0x18, 6	; 24
 }
- 1e8:	08 95       	ret
+ 4f0:	08 95       	ret
 
-000001ea <rfToStandbyOne>:
+000004f2 <rfToStandbyOne>:
 }
 
-// changes the state of the tranciver to standby mode one
+// changes the state of the transceiver to standby mode one
 void rfToStandbyOne(void)
 {
     rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PWR_UP));
- 1ea:	80 e0       	ldi	r24, 0x00	; 0
- 1ec:	e4 df       	rcall	.-56     	; 0x1b6 <rfReadRegChar>
- 1ee:	68 2f       	mov	r22, r24
- 1f0:	62 60       	ori	r22, 0x02	; 2
- 1f2:	80 e0       	ldi	r24, 0x00	; 0
- 1f4:	bb df       	rcall	.-138    	; 0x16c <rfWriteRegChar>
- 1f6:	80 ed       	ldi	r24, 0xD0	; 208
- 1f8:	97 e0       	ldi	r25, 0x07	; 7
- 1fa:	28 ec       	ldi	r18, 0xC8	; 200
- 1fc:	30 e0       	ldi	r19, 0x00	; 0
- 1fe:	f9 01       	movw	r30, r18
- 200:	31 97       	sbiw	r30, 0x01	; 1
- 202:	f1 f7       	brne	.-4      	; 0x200 <rfToStandbyOne+0x16>
+ 4f2:	80 e0       	ldi	r24, 0x00	; 0
+ 4f4:	82 de       	rcall	.-764    	; 0x1fa <rfReadRegChar>
+ 4f6:	68 2f       	mov	r22, r24
+ 4f8:	62 60       	ori	r22, 0x02	; 2
+ 4fa:	80 e0       	ldi	r24, 0x00	; 0
+ 4fc:	59 de       	rcall	.-846    	; 0x1b0 <rfWriteRegChar>
+    CE_LOW;
+ 4fe:	c6 98       	cbi	0x18, 6	; 24
+ 500:	80 ed       	ldi	r24, 0xD0	; 208
+ 502:	97 e0       	ldi	r25, 0x07	; 7
+ 504:	28 ec       	ldi	r18, 0xC8	; 200
+ 506:	30 e0       	ldi	r19, 0x00	; 0
+ 508:	f9 01       	movw	r30, r18
+ 50a:	31 97       	sbiw	r30, 0x01	; 1
+ 50c:	f1 f7       	brne	.-4      	; 0x50a <rfToStandbyOne+0x18>
 		__ticks = (uint16_t) (__ms * 10.0);
 		while(__ticks)
 		{
 			// wait 1/10 ms
 			_delay_loop_2(((F_CPU) / 4e3) / 10);
 			__ticks --;
- 204:	01 97       	sbiw	r24, 0x01	; 1
+ 50e:	01 97       	sbiw	r24, 0x01	; 1
 		__ticks = 1;
 	else if (__tmp > 65535)
 	{
 		//	__ticks = requested delay in 1/10 ms
 		__ticks = (uint16_t) (__ms * 10.0);
 		while(__ticks)
- 206:	d9 f7       	brne	.-10     	; 0x1fe <rfToStandbyOne+0x14>
+ 510:	d9 f7       	brne	.-10     	; 0x508 <rfToStandbyOne+0x16>
 
     _delay_ms(200);
 }
- 208:	08 95       	ret
+ 512:	08 95       	ret
 
-0000020a <rfTransmit>:
+00000514 <rfStartListening>:
+}
+
+// continuously listens
+void rfStartListening(void)
+{
+    rfToStandbyOne();
+ 514:	ee df       	rcall	.-36     	; 0x4f2 <rfToStandbyOne>
+    rfSetToReceiveMode();
+ 516:	48 df       	rcall	.-368    	; 0x3a8 <rfSetToReceiveMode>
+}
+ 518:	08 95       	ret
+
+0000051a <rfTransmit>:
 volatile uint8_t rfBuffer[32];
 volatile uint8_t *rfPtrBuffer = rfBuffer;
 
 // handles the transmission of rfPacket
 void rfTransmit(uint8_t* buff, uint8_t len)
 {
- 20a:	ff 92       	push	r15
- 20c:	0f 93       	push	r16
- 20e:	1f 93       	push	r17
- 210:	8c 01       	movw	r16, r24
- 212:	f6 2e       	mov	r15, r22
+ 51a:	ff 92       	push	r15
+ 51c:	0f 93       	push	r16
+ 51e:	1f 93       	push	r17
+ 520:	8c 01       	movw	r16, r24
+ 522:	f6 2e       	mov	r15, r22
     rfToStandbyOne();
- 214:	ea df       	rcall	.-44     	; 0x1ea <rfToStandbyOne>
+ 524:	e6 df       	rcall	.-52     	; 0x4f2 <rfToStandbyOne>
     rfWritePayload(buff, len);
- 216:	c8 01       	movw	r24, r16
- 218:	6f 2d       	mov	r22, r15
- 21a:	91 df       	rcall	.-222    	; 0x13e <rfWritePayload>
-    uint8_t result = rfReadRegChar(CONFIG);
- 21c:	80 e0       	ldi	r24, 0x00	; 0
- 21e:	cb df       	rcall	.-106    	; 0x1b6 <rfReadRegChar>
-    rfWriteRegChar(CONFIG, CLEAR_BIT(result, PRIM_RX));
- 220:	68 2f       	mov	r22, r24
- 222:	6e 7f       	andi	r22, 0xFE	; 254
- 224:	80 e0       	ldi	r24, 0x00	; 0
- 226:	a2 df       	rcall	.-188    	; 0x16c <rfWriteRegChar>
+ 526:	c8 01       	movw	r24, r16
+ 528:	6f 2d       	mov	r22, r15
+ 52a:	2b de       	rcall	.-938    	; 0x182 <rfWritePayload>
+    rfSetToTransmitMode();
+ 52c:	4a df       	rcall	.-364    	; 0x3c2 <rfSetToTransmitMode>
     CE_HIGH;
- 228:	c6 9a       	sbi	0x18, 6	; 24
+ 52e:	c6 9a       	sbi	0x18, 6	; 24
     can be achieved.
 */
 void
 _delay_loop_1(uint8_t __count)
 {
 	__asm__ volatile (
- 22a:	8a e1       	ldi	r24, 0x1A	; 26
- 22c:	8a 95       	dec	r24
- 22e:	f1 f7       	brne	.-4      	; 0x22c <rfTransmit+0x22>
+ 530:	8a e1       	ldi	r24, 0x1A	; 26
+ 532:	8a 95       	dec	r24
+ 534:	f1 f7       	brne	.-4      	; 0x532 <rfTransmit+0x18>
     _delay_us(10);
     CE_LOW;
- 230:	c6 98       	cbi	0x18, 6	; 24
+ 536:	c6 98       	cbi	0x18, 6	; 24
 }
- 232:	1f 91       	pop	r17
- 234:	0f 91       	pop	r16
- 236:	ff 90       	pop	r15
- 238:	08 95       	ret
+ 538:	1f 91       	pop	r17
+ 53a:	0f 91       	pop	r16
+ 53c:	ff 90       	pop	r15
+ 53e:	08 95       	ret
 
-0000023a <rfReadRegBuff>:
-    rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), PWR_UP));
+00000540 <rfReadRegBuff>:
+    CE_LOW;
 }
 
 // reads the register and writes to the buffer
 uint8_t rfReadRegBuff(uint8_t reg, uint8_t* buf, uint8_t len)
 {
- 23a:	0f 93       	push	r16
- 23c:	1f 93       	push	r17
- 23e:	cf 93       	push	r28
- 240:	df 93       	push	r29
- 242:	eb 01       	movw	r28, r22
- 244:	14 2f       	mov	r17, r20
+ 540:	0f 93       	push	r16
+ 542:	1f 93       	push	r17
+ 544:	cf 93       	push	r28
+ 546:	df 93       	push	r29
+ 548:	eb 01       	movw	r28, r22
+ 54a:	14 2f       	mov	r17, r20
     uint8_t status;
 
     CSN_LOW;
- 246:	c7 98       	cbi	0x18, 7	; 24
+ 54c:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( R_REGISTER | reg );
- 248:	30 d0       	rcall	.+96     	; 0x2aa <spiSendData>
- 24a:	08 2f       	mov	r16, r24
- 24c:	04 c0       	rjmp	.+8      	; 0x256 <rfReadRegBuff+0x1c>
+ 54e:	30 d0       	rcall	.+96     	; 0x5b0 <spiSendData>
+ 550:	08 2f       	mov	r16, r24
+ 552:	04 c0       	rjmp	.+8      	; 0x55c <rfReadRegBuff+0x1c>
     while ( len-- )
         *buf++ = spiSendData(0xff);
- 24e:	8f ef       	ldi	r24, 0xFF	; 255
- 250:	2c d0       	rcall	.+88     	; 0x2aa <spiSendData>
- 252:	89 93       	st	Y+, r24
- 254:	11 50       	subi	r17, 0x01	; 1
+ 554:	8f ef       	ldi	r24, 0xFF	; 255
+ 556:	2c d0       	rcall	.+88     	; 0x5b0 <spiSendData>
+ 558:	89 93       	st	Y+, r24
+ 55a:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
 
     CSN_LOW;
     status = spiSendData( R_REGISTER | reg );
     while ( len-- )
- 256:	11 23       	and	r17, r17
- 258:	d1 f7       	brne	.-12     	; 0x24e <rfReadRegBuff+0x14>
+ 55c:	11 23       	and	r17, r17
+ 55e:	d1 f7       	brne	.-12     	; 0x554 <rfReadRegBuff+0x14>
         *buf++ = spiSendData(0xff);
     CSN_HIGH;
- 25a:	c7 9a       	sbi	0x18, 7	; 24
+ 560:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
- 25c:	80 2f       	mov	r24, r16
- 25e:	df 91       	pop	r29
- 260:	cf 91       	pop	r28
- 262:	1f 91       	pop	r17
- 264:	0f 91       	pop	r16
- 266:	08 95       	ret
+ 562:	80 2f       	mov	r24, r16
+ 564:	df 91       	pop	r29
+ 566:	cf 91       	pop	r28
+ 568:	1f 91       	pop	r17
+ 56a:	0f 91       	pop	r16
+ 56c:	08 95       	ret
 
-00000268 <main>:
+0000056e <main>:
 
 int main(void)
 {
 
     return 0;
 }
- 268:	80 e0       	ldi	r24, 0x00	; 0
- 26a:	90 e0       	ldi	r25, 0x00	; 0
- 26c:	08 95       	ret
+ 56e:	80 e0       	ldi	r24, 0x00	; 0
+ 570:	90 e0       	ldi	r25, 0x00	; 0
+ 572:	08 95       	ret
 
-0000026e <spiInit>:
+00000574 <spiInit>:
 
 // initializing spi
 void spiInit(void)
 {
     // enabling spi
     SPCR |= (1<<SPE);
- 26e:	6e 9a       	sbi	0x0d, 6	; 13
+ 574:	6e 9a       	sbi	0x0d, 6	; 13
     // selecting master mode
     SPCR |= (1<<MSTR);
- 270:	6c 9a       	sbi	0x0d, 4	; 13
+ 576:	6c 9a       	sbi	0x0d, 4	; 13
     // making pins output, the miso pin will be made input when spi is enabled
     SPI_DDR |= (1<<MOSI) | (1<<SCK);
- 272:	87 b3       	in	r24, 0x17	; 23
- 274:	88 62       	ori	r24, 0x28	; 40
- 276:	87 bb       	out	0x17, r24	; 23
+ 578:	87 b3       	in	r24, 0x17	; 23
+ 57a:	88 62       	ori	r24, 0x28	; 40
+ 57c:	87 bb       	out	0x17, r24	; 23
 }
- 278:	08 95       	ret
+ 57e:	08 95       	ret
 
-0000027a <spiSendBuffer>:
+00000580 <spiSendBuffer>:
 
 // sending the data stored in the buffer.
 void spiSendBuffer(uint8_t *buffer, uint8_t len)
 {
- 27a:	fc 01       	movw	r30, r24
+ 580:	fc 01       	movw	r30, r24
     do
     {
         SPI_DATA = *buffer;
- 27c:	80 81       	ld	r24, Z
- 27e:	8f b9       	out	0x0f, r24	; 15
+ 582:	80 81       	ld	r24, Z
+ 584:	8f b9       	out	0x0f, r24	; 15
         SPI_SEND;
- 280:	77 9b       	sbis	0x0e, 7	; 14
- 282:	fe cf       	rjmp	.-4      	; 0x280 <spiSendBuffer+0x6>
+ 586:	77 9b       	sbis	0x0e, 7	; 14
+ 588:	fe cf       	rjmp	.-4      	; 0x586 <spiSendBuffer+0x6>
         buffer++;
     }
     while(len--);
- 284:	66 23       	and	r22, r22
- 286:	19 f0       	breq	.+6      	; 0x28e <spiSendBuffer+0x14>
+ 58a:	66 23       	and	r22, r22
+ 58c:	19 f0       	breq	.+6      	; 0x594 <spiSendBuffer+0x14>
 {
     do
     {
         SPI_DATA = *buffer;
         SPI_SEND;
         buffer++;
- 288:	31 96       	adiw	r30, 0x01	; 1
+ 58e:	31 96       	adiw	r30, 0x01	; 1
     }
     while(len--);
- 28a:	61 50       	subi	r22, 0x01	; 1
- 28c:	f7 cf       	rjmp	.-18     	; 0x27c <spiSendBuffer+0x2>
- 28e:	08 95       	ret
+ 590:	61 50       	subi	r22, 0x01	; 1
+ 592:	f7 cf       	rjmp	.-18     	; 0x582 <spiSendBuffer+0x2>
+ 594:	08 95       	ret
 
-00000290 <spiGetBuffer>:
+00000596 <spiGetBuffer>:
 }
 
 // gets the data from the radio and stores in the buffer
 void spiGetBuffer(uint8_t *buffer, uint8_t len)
 {
- 290:	fc 01       	movw	r30, r24
+ 596:	fc 01       	movw	r30, r24
     do
     {
         SPI_DATA = 0xff;
- 292:	9f ef       	ldi	r25, 0xFF	; 255
- 294:	9f b9       	out	0x0f, r25	; 15
+ 598:	9f ef       	ldi	r25, 0xFF	; 255
+ 59a:	9f b9       	out	0x0f, r25	; 15
         SPI_SEND;
- 296:	77 9b       	sbis	0x0e, 7	; 14
- 298:	fe cf       	rjmp	.-4      	; 0x296 <spiGetBuffer+0x6>
+ 59c:	77 9b       	sbis	0x0e, 7	; 14
+ 59e:	fe cf       	rjmp	.-4      	; 0x59c <spiGetBuffer+0x6>
         *buffer = SPI_DATA;
- 29a:	8f b1       	in	r24, 0x0f	; 15
- 29c:	80 83       	st	Z, r24
+ 5a0:	8f b1       	in	r24, 0x0f	; 15
+ 5a2:	80 83       	st	Z, r24
         buffer++;
     }
     while(len--);
- 29e:	66 23       	and	r22, r22
- 2a0:	19 f0       	breq	.+6      	; 0x2a8 <spiGetBuffer+0x18>
+ 5a4:	66 23       	and	r22, r22
+ 5a6:	19 f0       	breq	.+6      	; 0x5ae <spiGetBuffer+0x18>
     do
     {
         SPI_DATA = 0xff;
         SPI_SEND;
         *buffer = SPI_DATA;
         buffer++;
- 2a2:	31 96       	adiw	r30, 0x01	; 1
+ 5a8:	31 96       	adiw	r30, 0x01	; 1
     }
     while(len--);
- 2a4:	61 50       	subi	r22, 0x01	; 1
- 2a6:	f6 cf       	rjmp	.-20     	; 0x294 <spiGetBuffer+0x4>
- 2a8:	08 95       	ret
+ 5aa:	61 50       	subi	r22, 0x01	; 1
+ 5ac:	f6 cf       	rjmp	.-20     	; 0x59a <spiGetBuffer+0x4>
+ 5ae:	08 95       	ret
 
-000002aa <spiSendData>:
+000005b0 <spiSendData>:
 // sends any command
 uint8_t spiSendData(uint8_t data)
 {
     uint8_t result;
 
     SPI_DATA = data;
- 2aa:	8f b9       	out	0x0f, r24	; 15
+ 5b0:	8f b9       	out	0x0f, r24	; 15
     SPI_SEND;
- 2ac:	77 9b       	sbis	0x0e, 7	; 14
- 2ae:	fe cf       	rjmp	.-4      	; 0x2ac <spiSendData+0x2>
+ 5b2:	77 9b       	sbis	0x0e, 7	; 14
+ 5b4:	fe cf       	rjmp	.-4      	; 0x5b2 <spiSendData+0x2>
     result = SPI_DATA;
- 2b0:	8f b1       	in	r24, 0x0f	; 15
+ 5b6:	8f b1       	in	r24, 0x0f	; 15
     // returns the status
     return result;
 }
- 2b2:	08 95       	ret
+ 5b8:	08 95       	ret
 
-000002b4 <_exit>:
- 2b4:	f8 94       	cli
+000005ba <_exit>:
+ 5ba:	f8 94       	cli
 
-000002b6 <__stop_program>:
- 2b6:	ff cf       	rjmp	.-2      	; 0x2b6 <__stop_program>
+000005bc <__stop_program>:
+ 5bc:	ff cf       	rjmp	.-2      	; 0x5bc <__stop_program>

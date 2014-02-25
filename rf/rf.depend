@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1393263371 source:c:\users\neo\desktop\sandbox\crf24\main.c
+	<avr/io.h>
+	"cRF24.h"
+
+1393337958 c:\users\neo\desktop\sandbox\crf24\crf24.h
+	<inttypes.h>
+
+1393263371 source:c:\users\neo\desktop\sandbox\crf24\spi.c
+	<avr/io.h>
+	<avr/io.h>
+	"spi.h"
+
+1393261145 c:\users\neo\desktop\sandbox\crf24\spi.h
+	<inttypes.h>
+

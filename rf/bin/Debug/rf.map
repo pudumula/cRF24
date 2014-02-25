@@ -125,7 +125,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x2b8
+.text           0x00000000      0x5be
  *(.vectors)
  .vectors       0x00000000       0x26 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
                 0x00000000                __vectors
@@ -199,44 +199,71 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
                 0x0000005c                __vector_10
                 0x0000005c                __vector_16
                 0x0000005c                __vector_18
- .text          0x0000005e      0x20a obj\Debug\cRF24.o
-                0x000001ea                rfToStandbyOne
-                0x000000d6                __vector_1
-                0x0000020a                rfTransmit
-                0x0000016c                rfWriteRegChar
-                0x00000188                rfWriteRegBuff
-                0x0000006e                rfStatus
-                0x0000023a                rfReadRegBuff
-                0x000001b6                rfReadRegChar
-                0x00000094                rfReadPayload
-                0x000001dc                rfToPowerDown
-                0x0000008c                rfStopListening
-                0x00000082                rfFlushRx
+ .text          0x0000005e      0x510 obj\Debug\cRF24.o
+                0x000004f2                rfToStandbyOne
+                0x0000034e                rfSetAutoAckForPipe
+                0x000000ec                __vector_1
+                0x00000240                rfDisablePipeForRx
+                0x00000072                rfSetDynamicPayloadForPipe
+                0x00000074                rfClearDynamicPayloadForPipe
+                0x0000051a                rfTransmit
+                0x000001b0                rfWriteRegChar
+                0x00000206                rfTransmitCarrier
+                0x00000214                rfSetRetryDelay
+                0x000001cc                rfWriteRegBuff
+                0x00000084                rfStatus
+                0x00000540                rfReadRegBuff
+                0x0000007a                rfEnableGlobalDynamicAckPayload
+                0x00000480                rfSetDataRate
+                0x000004ce                rfSetChannel
+                0x000002f4                rfClearAutoAckForPipe
+                0x00000076                rfEnableGlobalDynamicPayload
+                0x0000007c                rfTxFifoStatus
+                0x000003a8                rfSetToReceiveMode
+                0x000001fa                rfReadRegChar
+                0x000004b8                rfSetTransmitPower
+                0x000000aa                rfReadPayload
+                0x000004e2                rfToPowerDown
+                0x0000022c                rfSetRetryAttempts
+                0x00000078                rfEnableGlobalAckPayload
+                0x0000046c                rfSetAddressWidth
+                0x000000a2                rfStopListening
+                0x0000045e                rfEnableCRC
+                0x00000450                rfDisableCRC
+                0x0000043e                rfSetCrcScheme
+                0x00000154                rfWriteAckPayload
+                0x000003da                rfClearInterruptMask
+                0x00000098                rfFlushRx
+                0x0000006e                rfReadChannelPower
+                0x0000029a                rfEnablePipeForRx
                 0x00000066                rfTransmited
                 0x0000005e                rfReceived
-                0x000001c2                rfStartListening
-                0x00000078                rfFlushTx
-                0x0000013e                rfWritePayload
- .text          0x00000268        0x6 obj\Debug\main.o
-                0x00000268                main
- .text          0x0000026e       0x46 obj\Debug\spi.o
-                0x00000290                spiGetBuffer
-                0x0000027a                spiSendBuffer
-                0x0000026e                spiInit
-                0x000002aa                spiSendData
- .text          0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
- .text          0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
- .text          0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
-                0x000002b4                . = ALIGN (0x2)
+                0x00000514                rfStartListening
+                0x00000080                rfRxFifoStatus
+                0x0000040c                rfSetInterruptMask
+                0x0000008e                rfFlushTx
+                0x000003c2                rfSetToTransmitMode
+                0x00000182                rfWritePayload
+ .text          0x0000056e        0x6 obj\Debug\main.o
+                0x0000056e                main
+ .text          0x00000574       0x46 obj\Debug\spi.o
+                0x00000596                spiGetBuffer
+                0x00000580                spiSendBuffer
+                0x00000574                spiInit
+                0x000005b0                spiSendData
+ .text          0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text          0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text          0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000005ba                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
- .text.libgcc   0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
- .text.libgcc   0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
-                0x000002b4                . = ALIGN (0x2)
+ .text.libgcc   0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000005ba                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000002b4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
-                0x000002b4                exit
-                0x000002b4                _exit
+ .fini9         0x000005ba        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                0x000005ba                exit
+                0x000005ba                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -255,11 +282,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000002b4        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .fini0         0x000005ba        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x000002b8                _etext = .
+                0x000005be                _etext = .
 
-.data           0x00800060        0x2 load address 0x000002b8
+.data           0x00800060        0x2 load address 0x000005be
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
@@ -295,8 +322,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
  COMMON         0x00800064       0x20 obj\Debug\cRF24.o
                 0x00800064                rfBuffer
                 0x00800084                PROVIDE (__bss_end, .)
-                0x000002b8                __data_load_start = LOADADDR (.data)
-                0x000002ba                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000005be                __data_load_start = LOADADDR (.data)
+                0x000005c0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800084        0x0
                 0x00800084                PROVIDE (__noinit_start, .)
@@ -364,53 +391,53 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
                 0x00000040       0x20 obj\Debug\spi.o
 
 .debug_pubnames
-                0x00000000      0x1e4
+                0x00000000      0x45c
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000      0x178 obj\Debug\cRF24.o
+                0x00000000      0x3f0 obj\Debug\cRF24.o
  .debug_pubnames
-                0x00000178       0x1b obj\Debug\main.o
+                0x000003f0       0x1b obj\Debug\main.o
  .debug_pubnames
-                0x00000193       0x51 obj\Debug\spi.o
+                0x0000040b       0x51 obj\Debug\spi.o
 
-.debug_info     0x00000000      0x74c
+.debug_info     0x00000000      0xb42
  *(.debug_info)
- .debug_info    0x00000000      0x5b2 obj\Debug\cRF24.o
- .debug_info    0x000005b2       0x76 obj\Debug\main.o
- .debug_info    0x00000628      0x124 obj\Debug\spi.o
+ .debug_info    0x00000000      0x9a8 obj\Debug\cRF24.o
+ .debug_info    0x000009a8       0x76 obj\Debug\main.o
+ .debug_info    0x00000a1e      0x124 obj\Debug\spi.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x27e
+.debug_abbrev   0x00000000      0x2fb
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x18d obj\Debug\cRF24.o
- .debug_abbrev  0x0000018d       0x41 obj\Debug\main.o
- .debug_abbrev  0x000001ce       0xb0 obj\Debug\spi.o
+ .debug_abbrev  0x00000000      0x20a obj\Debug\cRF24.o
+ .debug_abbrev  0x0000020a       0x41 obj\Debug\main.o
+ .debug_abbrev  0x0000024b       0xb0 obj\Debug\spi.o
 
-.debug_line     0x00000000      0x589
+.debug_line     0x00000000      0x9c6
  *(.debug_line)
- .debug_line    0x00000000      0x401 obj\Debug\cRF24.o
- .debug_line    0x00000401       0x5b obj\Debug\main.o
- .debug_line    0x0000045c      0x12d obj\Debug\spi.o
+ .debug_line    0x00000000      0x83e obj\Debug\cRF24.o
+ .debug_line    0x0000083e       0x5b obj\Debug\main.o
+ .debug_line    0x00000899      0x12d obj\Debug\spi.o
 
-.debug_frame    0x00000000      0x190
+.debug_frame    0x00000000      0x340
  *(.debug_frame)
- .debug_frame   0x00000000      0x120 obj\Debug\cRF24.o
- .debug_frame   0x00000120       0x20 obj\Debug\main.o
- .debug_frame   0x00000140       0x50 obj\Debug\spi.o
+ .debug_frame   0x00000000      0x2d0 obj\Debug\cRF24.o
+ .debug_frame   0x000002d0       0x20 obj\Debug\main.o
+ .debug_frame   0x000002f0       0x50 obj\Debug\spi.o
 
-.debug_str      0x00000000      0x256
+.debug_str      0x00000000      0x4b5
  *(.debug_str)
- .debug_str     0x00000000      0x203 obj\Debug\cRF24.o
-                                0x237 (size before relaxing)
- .debug_str     0x00000203        0xf obj\Debug\main.o
+ .debug_str     0x00000000      0x462 obj\Debug\cRF24.o
+                                0x496 (size before relaxing)
+ .debug_str     0x00000462        0xf obj\Debug\main.o
                                  0xa8 (size before relaxing)
- .debug_str     0x00000212       0x44 obj\Debug\spi.o
+ .debug_str     0x00000471       0x44 obj\Debug\spi.o
                                  0xec (size before relaxing)
 
-.debug_loc      0x00000000      0x275
+.debug_loc      0x00000000      0x55c
  *(.debug_loc)
- .debug_loc     0x00000000      0x1ff obj\Debug\cRF24.o
- .debug_loc     0x000001ff       0x76 obj\Debug\spi.o
+ .debug_loc     0x00000000      0x4e6 obj\Debug\cRF24.o
+ .debug_loc     0x000004e6       0x76 obj\Debug\spi.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -461,20 +488,47 @@ main                                              obj\Debug\main.o
                                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
 receivedFlag                                      obj\Debug\cRF24.o
 rfBuffer                                          obj\Debug\cRF24.o
+rfClearAutoAckForPipe                             obj\Debug\cRF24.o
+rfClearDynamicPayloadForPipe                      obj\Debug\cRF24.o
+rfClearInterruptMask                              obj\Debug\cRF24.o
+rfDisableCRC                                      obj\Debug\cRF24.o
+rfDisablePipeForRx                                obj\Debug\cRF24.o
+rfEnableCRC                                       obj\Debug\cRF24.o
+rfEnableGlobalAckPayload                          obj\Debug\cRF24.o
+rfEnableGlobalDynamicAckPayload                   obj\Debug\cRF24.o
+rfEnableGlobalDynamicPayload                      obj\Debug\cRF24.o
+rfEnablePipeForRx                                 obj\Debug\cRF24.o
 rfFlushRx                                         obj\Debug\cRF24.o
 rfFlushTx                                         obj\Debug\cRF24.o
 rfPtrBuffer                                       obj\Debug\cRF24.o
+rfReadChannelPower                                obj\Debug\cRF24.o
 rfReadPayload                                     obj\Debug\cRF24.o
 rfReadRegBuff                                     obj\Debug\cRF24.o
 rfReadRegChar                                     obj\Debug\cRF24.o
 rfReceived                                        obj\Debug\cRF24.o
+rfRxFifoStatus                                    obj\Debug\cRF24.o
+rfSetAddressWidth                                 obj\Debug\cRF24.o
+rfSetAutoAckForPipe                               obj\Debug\cRF24.o
+rfSetChannel                                      obj\Debug\cRF24.o
+rfSetCrcScheme                                    obj\Debug\cRF24.o
+rfSetDataRate                                     obj\Debug\cRF24.o
+rfSetDynamicPayloadForPipe                        obj\Debug\cRF24.o
+rfSetInterruptMask                                obj\Debug\cRF24.o
+rfSetRetryAttempts                                obj\Debug\cRF24.o
+rfSetRetryDelay                                   obj\Debug\cRF24.o
+rfSetToReceiveMode                                obj\Debug\cRF24.o
+rfSetToTransmitMode                               obj\Debug\cRF24.o
+rfSetTransmitPower                                obj\Debug\cRF24.o
 rfStartListening                                  obj\Debug\cRF24.o
 rfStatus                                          obj\Debug\cRF24.o
 rfStopListening                                   obj\Debug\cRF24.o
 rfToPowerDown                                     obj\Debug\cRF24.o
 rfToStandbyOne                                    obj\Debug\cRF24.o
 rfTransmit                                        obj\Debug\cRF24.o
+rfTransmitCarrier                                 obj\Debug\cRF24.o
 rfTransmited                                      obj\Debug\cRF24.o
+rfTxFifoStatus                                    obj\Debug\cRF24.o
+rfWriteAckPayload                                 obj\Debug\cRF24.o
 rfWritePayload                                    obj\Debug\cRF24.o
 rfWriteRegBuff                                    obj\Debug\cRF24.o
 rfWriteRegChar                                    obj\Debug\cRF24.o
