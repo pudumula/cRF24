@@ -147,10 +147,9 @@ uint8_t rfReadPayload(uint8_t len)
     return status;
 }
 
-// continously listens
+// continuously listens
 void rfStartListening(void)
 {
-    rfToStandbyOne();
     CE_LOW;
     rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PRIM_RX));
     _delay_us(130);

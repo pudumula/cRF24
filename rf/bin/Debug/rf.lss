@@ -3,27 +3,27 @@ bin\Debug\rf.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000002ba  00000000  00000000  00000094  2**1
+  0 .text         000002b8  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000002  00800060  000002ba  0000034e  2**0
+  1 .data         00000002  00800060  000002b8  0000034c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000022  00800062  00800062  00000350  2**0
+  2 .bss          00000022  00800062  00800062  0000034e  2**0
                   ALLOC
-  3 .debug_aranges 00000060  00000000  00000000  00000350  2**0
+  3 .debug_aranges 00000060  00000000  00000000  0000034e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 000001e4  00000000  00000000  000003b0  2**0
+  4 .debug_pubnames 000001e4  00000000  00000000  000003ae  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000074c  00000000  00000000  00000594  2**0
+  5 .debug_info   0000074c  00000000  00000000  00000592  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000027e  00000000  00000000  00000ce0  2**0
+  6 .debug_abbrev 0000027e  00000000  00000000  00000cde  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000591  00000000  00000000  00000f5e  2**0
+  7 .debug_line   00000589  00000000  00000000  00000f5c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000190  00000000  00000000  000014f0  2**2
+  8 .debug_frame  00000190  00000000  00000000  000014e8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000256  00000000  00000000  00001680  2**0
+  9 .debug_str    00000256  00000000  00000000  00001678  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000275  00000000  00000000  000018d6  2**0
+ 10 .debug_loc    00000275  00000000  00000000  000018ce  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -61,7 +61,7 @@ Disassembly of section .text:
   32:	10 e0       	ldi	r17, 0x00	; 0
   34:	a0 e6       	ldi	r26, 0x60	; 96
   36:	b0 e0       	ldi	r27, 0x00	; 0
-  38:	ea eb       	ldi	r30, 0xBA	; 186
+  38:	e8 eb       	ldi	r30, 0xB8	; 184
   3a:	f2 e0       	ldi	r31, 0x02	; 2
   3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
 
@@ -87,8 +87,8 @@ Disassembly of section .text:
   52:	a4 38       	cpi	r26, 0x84	; 132
   54:	b1 07       	cpc	r27, r17
   56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
-  58:	08 d1       	rcall	.+528    	; 0x26a <main>
-  5a:	2d c1       	rjmp	.+602    	; 0x2b6 <_exit>
+  58:	07 d1       	rcall	.+526    	; 0x268 <main>
+  5a:	2c c1       	rjmp	.+600    	; 0x2b4 <_exit>
 
 0000005c <__bad_interrupt>:
   5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
@@ -127,7 +127,7 @@ uint8_t rfStatus(void)
   6e:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData(NOP);
   70:	8f ef       	ldi	r24, 0xFF	; 255
-  72:	1c d1       	rcall	.+568    	; 0x2ac <spiSendData>
+  72:	1b d1       	rcall	.+566    	; 0x2aa <spiSendData>
     CSN_HIGH;
   74:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -145,7 +145,7 @@ uint8_t rfFlushTx(void)
   78:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( FLUSH_TX );
   7a:	81 ee       	ldi	r24, 0xE1	; 225
-  7c:	17 d1       	rcall	.+558    	; 0x2ac <spiSendData>
+  7c:	16 d1       	rcall	.+556    	; 0x2aa <spiSendData>
     CSN_HIGH;
   7e:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -163,7 +163,7 @@ uint8_t rfFlushRx(void)
   82:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( FLUSH_RX );
   84:	82 ee       	ldi	r24, 0xE2	; 226
-  86:	12 d1       	rcall	.+548    	; 0x2ac <spiSendData>
+  86:	11 d1       	rcall	.+546    	; 0x2aa <spiSendData>
     CSN_HIGH;
   88:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -204,7 +204,7 @@ uint8_t rfReadPayload(uint8_t len)
   9e:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( R_RX_PAYLOAD );
   a0:	81 e6       	ldi	r24, 0x61	; 97
-  a2:	04 d1       	rcall	.+520    	; 0x2ac <spiSendData>
+  a2:	03 d1       	rcall	.+518    	; 0x2aa <spiSendData>
   a4:	e8 2e       	mov	r14, r24
   a6:	0e c0       	rjmp	.+28     	; 0xc4 <rfReadPayload+0x30>
     while ( len-- )
@@ -212,7 +212,7 @@ uint8_t rfReadPayload(uint8_t len)
   a8:	10 91 60 00 	lds	r17, 0x0060
   ac:	00 91 61 00 	lds	r16, 0x0061
   b0:	8f ef       	ldi	r24, 0xFF	; 255
-  b2:	fc d0       	rcall	.+504    	; 0x2ac <spiSendData>
+  b2:	fb d0       	rcall	.+502    	; 0x2aa <spiSendData>
   b4:	e1 2f       	mov	r30, r17
   b6:	f0 2f       	mov	r31, r16
   b8:	81 93       	st	Z+, r24
@@ -348,13 +348,13 @@ uint8_t rfWritePayload(const uint8_t* buf, uint8_t len)
  14a:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_TX_PAYLOAD );
  14c:	80 ea       	ldi	r24, 0xA0	; 160
- 14e:	ae d0       	rcall	.+348    	; 0x2ac <spiSendData>
+ 14e:	ad d0       	rcall	.+346    	; 0x2aa <spiSendData>
  150:	08 2f       	mov	r16, r24
  152:	03 c0       	rjmp	.+6      	; 0x15a <rfWritePayload+0x1c>
     while ( len-- )
         spiSendData(*buf++);
  154:	89 91       	ld	r24, Y+
- 156:	aa d0       	rcall	.+340    	; 0x2ac <spiSendData>
+ 156:	a9 d0       	rcall	.+338    	; 0x2aa <spiSendData>
  158:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
@@ -393,11 +393,11 @@ uint8_t rfWriteRegChar(uint8_t reg, uint8_t value)
  172:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_REGISTER | reg );
  174:	80 62       	ori	r24, 0x20	; 32
- 176:	9a d0       	rcall	.+308    	; 0x2ac <spiSendData>
+ 176:	99 d0       	rcall	.+306    	; 0x2aa <spiSendData>
  178:	18 2f       	mov	r17, r24
     spiSendData(value);
  17a:	80 2f       	mov	r24, r16
- 17c:	97 d0       	rcall	.+302    	; 0x2ac <spiSendData>
+ 17c:	96 d0       	rcall	.+300    	; 0x2aa <spiSendData>
     CSN_HIGH;
  17e:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -427,13 +427,13 @@ uint8_t rfWriteRegBuff(uint8_t reg, const uint8_t* buf, uint8_t len)
  194:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_REGISTER | reg );
  196:	80 62       	ori	r24, 0x20	; 32
- 198:	89 d0       	rcall	.+274    	; 0x2ac <spiSendData>
+ 198:	88 d0       	rcall	.+272    	; 0x2aa <spiSendData>
  19a:	08 2f       	mov	r16, r24
  19c:	03 c0       	rjmp	.+6      	; 0x1a4 <rfWriteRegBuff+0x1c>
     while ( len-- )
         spiSendData(*buf++);
  19e:	89 91       	ld	r24, Y+
- 1a0:	85 d0       	rcall	.+266    	; 0x2ac <spiSendData>
+ 1a0:	84 d0       	rcall	.+264    	; 0x2aa <spiSendData>
  1a2:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
@@ -465,10 +465,10 @@ uint8_t rfReadRegChar(uint8_t reg)
     CSN_LOW;
  1b6:	c7 98       	cbi	0x18, 7	; 24
     spiSendData( R_REGISTER | reg );
- 1b8:	79 d0       	rcall	.+242    	; 0x2ac <spiSendData>
+ 1b8:	78 d0       	rcall	.+240    	; 0x2aa <spiSendData>
     uint8_t result = spiSendData(0xff);
  1ba:	8f ef       	ldi	r24, 0xFF	; 255
- 1bc:	77 d0       	rcall	.+238    	; 0x2ac <spiSendData>
+ 1bc:	76 d0       	rcall	.+236    	; 0x2aa <spiSendData>
     CSN_HIGH;
  1be:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -476,306 +476,304 @@ uint8_t rfReadRegChar(uint8_t reg)
 }
  1c0:	08 95       	ret
 
-000001c2 <rfToPowerDown>:
+000001c2 <rfStartListening>:
 }
 
-// changes the state of the tranciver to powerDown mode
-void rfToPowerDown(void)
+// continuously listens
+void rfStartListening(void)
 {
-    rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), PWR_UP));
- 1c2:	80 e0       	ldi	r24, 0x00	; 0
- 1c4:	f8 df       	rcall	.-16     	; 0x1b6 <rfReadRegChar>
- 1c6:	68 2f       	mov	r22, r24
- 1c8:	6d 7f       	andi	r22, 0xFD	; 253
- 1ca:	80 e0       	ldi	r24, 0x00	; 0
- 1cc:	cf df       	rcall	.-98     	; 0x16c <rfWriteRegChar>
-}
- 1ce:	08 95       	ret
-
-000001d0 <rfToStandbyOne>:
-}
-
-// changes the state of the tranciver to standby mode one
-void rfToStandbyOne(void)
-{
-    rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PWR_UP));
- 1d0:	80 e0       	ldi	r24, 0x00	; 0
- 1d2:	f1 df       	rcall	.-30     	; 0x1b6 <rfReadRegChar>
- 1d4:	68 2f       	mov	r22, r24
- 1d6:	62 60       	ori	r22, 0x02	; 2
- 1d8:	80 e0       	ldi	r24, 0x00	; 0
- 1da:	c8 df       	rcall	.-112    	; 0x16c <rfWriteRegChar>
- 1dc:	80 ed       	ldi	r24, 0xD0	; 208
- 1de:	97 e0       	ldi	r25, 0x07	; 7
+    CE_LOW;
+ 1c2:	c6 98       	cbi	0x18, 6	; 24
+    rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PRIM_RX));
+ 1c4:	80 e0       	ldi	r24, 0x00	; 0
+ 1c6:	f7 df       	rcall	.-18     	; 0x1b6 <rfReadRegChar>
+ 1c8:	68 2f       	mov	r22, r24
+ 1ca:	61 60       	ori	r22, 0x01	; 1
+ 1cc:	80 e0       	ldi	r24, 0x00	; 0
+ 1ce:	ce df       	rcall	.-100    	; 0x16c <rfWriteRegChar>
     milliseconds can be achieved.
  */
 void
 _delay_loop_2(uint16_t __count)
 {
 	__asm__ volatile (
- 1e0:	28 ec       	ldi	r18, 0xC8	; 200
- 1e2:	30 e0       	ldi	r19, 0x00	; 0
- 1e4:	f9 01       	movw	r30, r18
- 1e6:	31 97       	sbiw	r30, 0x01	; 1
- 1e8:	f1 f7       	brne	.-4      	; 0x1e6 <rfToStandbyOne+0x16>
+ 1d0:	84 e0       	ldi	r24, 0x04	; 4
+ 1d2:	91 e0       	ldi	r25, 0x01	; 1
+ 1d4:	01 97       	sbiw	r24, 0x01	; 1
+ 1d6:	f1 f7       	brne	.-4      	; 0x1d4 <rfStartListening+0x12>
+    _delay_us(130);
+    CE_HIGH;
+ 1d8:	c6 9a       	sbi	0x18, 6	; 24
+}
+ 1da:	08 95       	ret
+
+000001dc <rfToPowerDown>:
+}
+
+// changes the state of the tranciver to powerDown mode
+void rfToPowerDown(void)
+{
+    rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), PWR_UP));
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+ 1de:	eb df       	rcall	.-42     	; 0x1b6 <rfReadRegChar>
+ 1e0:	68 2f       	mov	r22, r24
+ 1e2:	6d 7f       	andi	r22, 0xFD	; 253
+ 1e4:	80 e0       	ldi	r24, 0x00	; 0
+ 1e6:	c2 df       	rcall	.-124    	; 0x16c <rfWriteRegChar>
+}
+ 1e8:	08 95       	ret
+
+000001ea <rfToStandbyOne>:
+}
+
+// changes the state of the tranciver to standby mode one
+void rfToStandbyOne(void)
+{
+    rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PWR_UP));
+ 1ea:	80 e0       	ldi	r24, 0x00	; 0
+ 1ec:	e4 df       	rcall	.-56     	; 0x1b6 <rfReadRegChar>
+ 1ee:	68 2f       	mov	r22, r24
+ 1f0:	62 60       	ori	r22, 0x02	; 2
+ 1f2:	80 e0       	ldi	r24, 0x00	; 0
+ 1f4:	bb df       	rcall	.-138    	; 0x16c <rfWriteRegChar>
+ 1f6:	80 ed       	ldi	r24, 0xD0	; 208
+ 1f8:	97 e0       	ldi	r25, 0x07	; 7
+ 1fa:	28 ec       	ldi	r18, 0xC8	; 200
+ 1fc:	30 e0       	ldi	r19, 0x00	; 0
+ 1fe:	f9 01       	movw	r30, r18
+ 200:	31 97       	sbiw	r30, 0x01	; 1
+ 202:	f1 f7       	brne	.-4      	; 0x200 <rfToStandbyOne+0x16>
 		__ticks = (uint16_t) (__ms * 10.0);
 		while(__ticks)
 		{
 			// wait 1/10 ms
 			_delay_loop_2(((F_CPU) / 4e3) / 10);
 			__ticks --;
- 1ea:	01 97       	sbiw	r24, 0x01	; 1
+ 204:	01 97       	sbiw	r24, 0x01	; 1
 		__ticks = 1;
 	else if (__tmp > 65535)
 	{
 		//	__ticks = requested delay in 1/10 ms
 		__ticks = (uint16_t) (__ms * 10.0);
 		while(__ticks)
- 1ec:	d9 f7       	brne	.-10     	; 0x1e4 <rfToStandbyOne+0x14>
+ 206:	d9 f7       	brne	.-10     	; 0x1fe <rfToStandbyOne+0x14>
 
     _delay_ms(200);
 }
- 1ee:	08 95       	ret
+ 208:	08 95       	ret
 
-000001f0 <rfStartListening>:
-}
-
-// continously listens
-void rfStartListening(void)
-{
-    rfToStandbyOne();
- 1f0:	ef df       	rcall	.-34     	; 0x1d0 <rfToStandbyOne>
-    CE_LOW;
- 1f2:	c6 98       	cbi	0x18, 6	; 24
-    rfWriteRegChar(CONFIG, SET_BIT(rfReadRegChar(CONFIG), PRIM_RX));
- 1f4:	80 e0       	ldi	r24, 0x00	; 0
- 1f6:	df df       	rcall	.-66     	; 0x1b6 <rfReadRegChar>
- 1f8:	68 2f       	mov	r22, r24
- 1fa:	61 60       	ori	r22, 0x01	; 1
- 1fc:	80 e0       	ldi	r24, 0x00	; 0
- 1fe:	b6 df       	rcall	.-148    	; 0x16c <rfWriteRegChar>
- 200:	84 e0       	ldi	r24, 0x04	; 4
- 202:	91 e0       	ldi	r25, 0x01	; 1
- 204:	01 97       	sbiw	r24, 0x01	; 1
- 206:	f1 f7       	brne	.-4      	; 0x204 <rfStartListening+0x14>
-    _delay_us(130);
-    CE_HIGH;
- 208:	c6 9a       	sbi	0x18, 6	; 24
-}
- 20a:	08 95       	ret
-
-0000020c <rfTransmit>:
+0000020a <rfTransmit>:
 volatile uint8_t rfBuffer[32];
 volatile uint8_t *rfPtrBuffer = rfBuffer;
 
 // handles the transmission of rfPacket
 void rfTransmit(uint8_t* buff, uint8_t len)
 {
- 20c:	ff 92       	push	r15
- 20e:	0f 93       	push	r16
- 210:	1f 93       	push	r17
- 212:	8c 01       	movw	r16, r24
- 214:	f6 2e       	mov	r15, r22
+ 20a:	ff 92       	push	r15
+ 20c:	0f 93       	push	r16
+ 20e:	1f 93       	push	r17
+ 210:	8c 01       	movw	r16, r24
+ 212:	f6 2e       	mov	r15, r22
     rfToStandbyOne();
- 216:	dc df       	rcall	.-72     	; 0x1d0 <rfToStandbyOne>
+ 214:	ea df       	rcall	.-44     	; 0x1ea <rfToStandbyOne>
     rfWritePayload(buff, len);
- 218:	c8 01       	movw	r24, r16
- 21a:	6f 2d       	mov	r22, r15
- 21c:	90 df       	rcall	.-224    	; 0x13e <rfWritePayload>
+ 216:	c8 01       	movw	r24, r16
+ 218:	6f 2d       	mov	r22, r15
+ 21a:	91 df       	rcall	.-222    	; 0x13e <rfWritePayload>
     uint8_t result = rfReadRegChar(CONFIG);
- 21e:	80 e0       	ldi	r24, 0x00	; 0
- 220:	ca df       	rcall	.-108    	; 0x1b6 <rfReadRegChar>
+ 21c:	80 e0       	ldi	r24, 0x00	; 0
+ 21e:	cb df       	rcall	.-106    	; 0x1b6 <rfReadRegChar>
     rfWriteRegChar(CONFIG, CLEAR_BIT(result, PRIM_RX));
- 222:	68 2f       	mov	r22, r24
- 224:	6e 7f       	andi	r22, 0xFE	; 254
- 226:	80 e0       	ldi	r24, 0x00	; 0
- 228:	a1 df       	rcall	.-190    	; 0x16c <rfWriteRegChar>
+ 220:	68 2f       	mov	r22, r24
+ 222:	6e 7f       	andi	r22, 0xFE	; 254
+ 224:	80 e0       	ldi	r24, 0x00	; 0
+ 226:	a2 df       	rcall	.-188    	; 0x16c <rfWriteRegChar>
     CE_HIGH;
- 22a:	c6 9a       	sbi	0x18, 6	; 24
+ 228:	c6 9a       	sbi	0x18, 6	; 24
     can be achieved.
 */
 void
 _delay_loop_1(uint8_t __count)
 {
 	__asm__ volatile (
- 22c:	8a e1       	ldi	r24, 0x1A	; 26
- 22e:	8a 95       	dec	r24
- 230:	f1 f7       	brne	.-4      	; 0x22e <rfTransmit+0x22>
+ 22a:	8a e1       	ldi	r24, 0x1A	; 26
+ 22c:	8a 95       	dec	r24
+ 22e:	f1 f7       	brne	.-4      	; 0x22c <rfTransmit+0x22>
     _delay_us(10);
     CE_LOW;
- 232:	c6 98       	cbi	0x18, 6	; 24
+ 230:	c6 98       	cbi	0x18, 6	; 24
 }
- 234:	1f 91       	pop	r17
- 236:	0f 91       	pop	r16
- 238:	ff 90       	pop	r15
- 23a:	08 95       	ret
+ 232:	1f 91       	pop	r17
+ 234:	0f 91       	pop	r16
+ 236:	ff 90       	pop	r15
+ 238:	08 95       	ret
 
-0000023c <rfReadRegBuff>:
+0000023a <rfReadRegBuff>:
     rfWriteRegChar(CONFIG, CLEAR_BIT(rfReadRegChar(CONFIG), PWR_UP));
 }
 
 // reads the register and writes to the buffer
 uint8_t rfReadRegBuff(uint8_t reg, uint8_t* buf, uint8_t len)
 {
- 23c:	0f 93       	push	r16
- 23e:	1f 93       	push	r17
- 240:	cf 93       	push	r28
- 242:	df 93       	push	r29
- 244:	eb 01       	movw	r28, r22
- 246:	14 2f       	mov	r17, r20
+ 23a:	0f 93       	push	r16
+ 23c:	1f 93       	push	r17
+ 23e:	cf 93       	push	r28
+ 240:	df 93       	push	r29
+ 242:	eb 01       	movw	r28, r22
+ 244:	14 2f       	mov	r17, r20
     uint8_t status;
 
     CSN_LOW;
- 248:	c7 98       	cbi	0x18, 7	; 24
+ 246:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( R_REGISTER | reg );
- 24a:	30 d0       	rcall	.+96     	; 0x2ac <spiSendData>
- 24c:	08 2f       	mov	r16, r24
- 24e:	04 c0       	rjmp	.+8      	; 0x258 <rfReadRegBuff+0x1c>
+ 248:	30 d0       	rcall	.+96     	; 0x2aa <spiSendData>
+ 24a:	08 2f       	mov	r16, r24
+ 24c:	04 c0       	rjmp	.+8      	; 0x256 <rfReadRegBuff+0x1c>
     while ( len-- )
         *buf++ = spiSendData(0xff);
- 250:	8f ef       	ldi	r24, 0xFF	; 255
- 252:	2c d0       	rcall	.+88     	; 0x2ac <spiSendData>
- 254:	89 93       	st	Y+, r24
- 256:	11 50       	subi	r17, 0x01	; 1
+ 24e:	8f ef       	ldi	r24, 0xFF	; 255
+ 250:	2c d0       	rcall	.+88     	; 0x2aa <spiSendData>
+ 252:	89 93       	st	Y+, r24
+ 254:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
 
     CSN_LOW;
     status = spiSendData( R_REGISTER | reg );
     while ( len-- )
- 258:	11 23       	and	r17, r17
- 25a:	d1 f7       	brne	.-12     	; 0x250 <rfReadRegBuff+0x14>
+ 256:	11 23       	and	r17, r17
+ 258:	d1 f7       	brne	.-12     	; 0x24e <rfReadRegBuff+0x14>
         *buf++ = spiSendData(0xff);
     CSN_HIGH;
- 25c:	c7 9a       	sbi	0x18, 7	; 24
+ 25a:	c7 9a       	sbi	0x18, 7	; 24
 
     return status;
 }
- 25e:	80 2f       	mov	r24, r16
- 260:	df 91       	pop	r29
- 262:	cf 91       	pop	r28
- 264:	1f 91       	pop	r17
- 266:	0f 91       	pop	r16
- 268:	08 95       	ret
+ 25c:	80 2f       	mov	r24, r16
+ 25e:	df 91       	pop	r29
+ 260:	cf 91       	pop	r28
+ 262:	1f 91       	pop	r17
+ 264:	0f 91       	pop	r16
+ 266:	08 95       	ret
 
-0000026a <main>:
+00000268 <main>:
 
 int main(void)
 {
 
     return 0;
 }
- 26a:	80 e0       	ldi	r24, 0x00	; 0
- 26c:	90 e0       	ldi	r25, 0x00	; 0
- 26e:	08 95       	ret
+ 268:	80 e0       	ldi	r24, 0x00	; 0
+ 26a:	90 e0       	ldi	r25, 0x00	; 0
+ 26c:	08 95       	ret
 
-00000270 <spiInit>:
+0000026e <spiInit>:
 
 // initializing spi
 void spiInit(void)
 {
     // enabling spi
     SPCR |= (1<<SPE);
- 270:	6e 9a       	sbi	0x0d, 6	; 13
+ 26e:	6e 9a       	sbi	0x0d, 6	; 13
     // selecting master mode
     SPCR |= (1<<MSTR);
- 272:	6c 9a       	sbi	0x0d, 4	; 13
+ 270:	6c 9a       	sbi	0x0d, 4	; 13
     // making pins output, the miso pin will be made input when spi is enabled
     SPI_DDR |= (1<<MOSI) | (1<<SCK);
- 274:	87 b3       	in	r24, 0x17	; 23
- 276:	88 62       	ori	r24, 0x28	; 40
- 278:	87 bb       	out	0x17, r24	; 23
+ 272:	87 b3       	in	r24, 0x17	; 23
+ 274:	88 62       	ori	r24, 0x28	; 40
+ 276:	87 bb       	out	0x17, r24	; 23
 }
- 27a:	08 95       	ret
+ 278:	08 95       	ret
 
-0000027c <spiSendBuffer>:
+0000027a <spiSendBuffer>:
 
 // sending the data stored in the buffer.
 void spiSendBuffer(uint8_t *buffer, uint8_t len)
 {
- 27c:	fc 01       	movw	r30, r24
+ 27a:	fc 01       	movw	r30, r24
     do
     {
         SPI_DATA = *buffer;
- 27e:	80 81       	ld	r24, Z
- 280:	8f b9       	out	0x0f, r24	; 15
+ 27c:	80 81       	ld	r24, Z
+ 27e:	8f b9       	out	0x0f, r24	; 15
         SPI_SEND;
- 282:	77 9b       	sbis	0x0e, 7	; 14
- 284:	fe cf       	rjmp	.-4      	; 0x282 <spiSendBuffer+0x6>
+ 280:	77 9b       	sbis	0x0e, 7	; 14
+ 282:	fe cf       	rjmp	.-4      	; 0x280 <spiSendBuffer+0x6>
         buffer++;
     }
     while(len--);
- 286:	66 23       	and	r22, r22
- 288:	19 f0       	breq	.+6      	; 0x290 <spiSendBuffer+0x14>
+ 284:	66 23       	and	r22, r22
+ 286:	19 f0       	breq	.+6      	; 0x28e <spiSendBuffer+0x14>
 {
     do
     {
         SPI_DATA = *buffer;
         SPI_SEND;
         buffer++;
- 28a:	31 96       	adiw	r30, 0x01	; 1
+ 288:	31 96       	adiw	r30, 0x01	; 1
     }
     while(len--);
- 28c:	61 50       	subi	r22, 0x01	; 1
- 28e:	f7 cf       	rjmp	.-18     	; 0x27e <spiSendBuffer+0x2>
- 290:	08 95       	ret
+ 28a:	61 50       	subi	r22, 0x01	; 1
+ 28c:	f7 cf       	rjmp	.-18     	; 0x27c <spiSendBuffer+0x2>
+ 28e:	08 95       	ret
 
-00000292 <spiGetBuffer>:
+00000290 <spiGetBuffer>:
 }
 
 // gets the data from the radio and stores in the buffer
 void spiGetBuffer(uint8_t *buffer, uint8_t len)
 {
- 292:	fc 01       	movw	r30, r24
+ 290:	fc 01       	movw	r30, r24
     do
     {
         SPI_DATA = 0xff;
- 294:	9f ef       	ldi	r25, 0xFF	; 255
- 296:	9f b9       	out	0x0f, r25	; 15
+ 292:	9f ef       	ldi	r25, 0xFF	; 255
+ 294:	9f b9       	out	0x0f, r25	; 15
         SPI_SEND;
- 298:	77 9b       	sbis	0x0e, 7	; 14
- 29a:	fe cf       	rjmp	.-4      	; 0x298 <spiGetBuffer+0x6>
+ 296:	77 9b       	sbis	0x0e, 7	; 14
+ 298:	fe cf       	rjmp	.-4      	; 0x296 <spiGetBuffer+0x6>
         *buffer = SPI_DATA;
- 29c:	8f b1       	in	r24, 0x0f	; 15
- 29e:	80 83       	st	Z, r24
+ 29a:	8f b1       	in	r24, 0x0f	; 15
+ 29c:	80 83       	st	Z, r24
         buffer++;
     }
     while(len--);
- 2a0:	66 23       	and	r22, r22
- 2a2:	19 f0       	breq	.+6      	; 0x2aa <spiGetBuffer+0x18>
+ 29e:	66 23       	and	r22, r22
+ 2a0:	19 f0       	breq	.+6      	; 0x2a8 <spiGetBuffer+0x18>
     do
     {
         SPI_DATA = 0xff;
         SPI_SEND;
         *buffer = SPI_DATA;
         buffer++;
- 2a4:	31 96       	adiw	r30, 0x01	; 1
+ 2a2:	31 96       	adiw	r30, 0x01	; 1
     }
     while(len--);
- 2a6:	61 50       	subi	r22, 0x01	; 1
- 2a8:	f6 cf       	rjmp	.-20     	; 0x296 <spiGetBuffer+0x4>
- 2aa:	08 95       	ret
+ 2a4:	61 50       	subi	r22, 0x01	; 1
+ 2a6:	f6 cf       	rjmp	.-20     	; 0x294 <spiGetBuffer+0x4>
+ 2a8:	08 95       	ret
 
-000002ac <spiSendData>:
+000002aa <spiSendData>:
 // sends any command
 uint8_t spiSendData(uint8_t data)
 {
     uint8_t result;
 
     SPI_DATA = data;
- 2ac:	8f b9       	out	0x0f, r24	; 15
+ 2aa:	8f b9       	out	0x0f, r24	; 15
     SPI_SEND;
- 2ae:	77 9b       	sbis	0x0e, 7	; 14
- 2b0:	fe cf       	rjmp	.-4      	; 0x2ae <spiSendData+0x2>
+ 2ac:	77 9b       	sbis	0x0e, 7	; 14
+ 2ae:	fe cf       	rjmp	.-4      	; 0x2ac <spiSendData+0x2>
     result = SPI_DATA;
- 2b2:	8f b1       	in	r24, 0x0f	; 15
+ 2b0:	8f b1       	in	r24, 0x0f	; 15
     // returns the status
     return result;
 }
- 2b4:	08 95       	ret
+ 2b2:	08 95       	ret
 
-000002b6 <_exit>:
- 2b6:	f8 94       	cli
+000002b4 <_exit>:
+ 2b4:	f8 94       	cli
 
-000002b8 <__stop_program>:
- 2b8:	ff cf       	rjmp	.-2      	; 0x2b8 <__stop_program>
+000002b6 <__stop_program>:
+ 2b6:	ff cf       	rjmp	.-2      	; 0x2b6 <__stop_program>
