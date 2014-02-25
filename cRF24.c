@@ -484,49 +484,123 @@ void rfTransmitCarrier(void)
 // reads the channel power
 uint8_t rfReadChannelPower(void)
 {
-    return 0;
+    return rfReadRegChar(RPD);
 }
 
 // enables dynamic payload for a pipe
 void rfSetDynamicPayloadForPipe(uint8_t dymamic)
 {
-
+    if (DPL_P0 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, SET_BIT(rfReadRegChar(DYNPD), DPL_P0));
+    }
+    else if (DPL_P1 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, SET_BIT(rfReadRegChar(DYNPD), DPL_P1));
+    }
+    else if (DPL_P2 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, SET_BIT(rfReadRegChar(DYNPD), DPL_P2));
+    }
+    else if (DPL_P3 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, SET_BIT(rfReadRegChar(DYNPD), DPL_P3));
+    }
+    else if (DPL_P4 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, SET_BIT(rfReadRegChar(DYNPD), DPL_P4));
+    }
+    else if (DPL_P5 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, SET_BIT(rfReadRegChar(DYNPD), DPL_P5));
+    }
+    else
+    {
+        // something wrong
+    }
 }
 
 // enables dynamic payload for a pipe
 void rfClearDynamicPayloadForPipe(uint8_t dymamic)
 {
-
+    if (DPL_P0 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, CLEAR_BIT(rfReadRegChar(DYNPD), DPL_P0));
+    }
+    else if (DPL_P1 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, CLEAR_BIT(rfReadRegChar(DYNPD), DPL_P1));
+    }
+    else if (DPL_P2 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, CLEAR_BIT(rfReadRegChar(DYNPD), DPL_P2));
+    }
+    else if (DPL_P3 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, CLEAR_BIT(rfReadRegChar(DYNPD), DPL_P3));
+    }
+    else if (DPL_P4 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, CLEAR_BIT(rfReadRegChar(DYNPD), DPL_P4));
+    }
+    else if (DPL_P5 == dymamic)
+    {
+        rfWriteRegChar(DYNPD, CLEAR_BIT(rfReadRegChar(DYNPD), DPL_P5));
+    }
+    else
+    {
+        // something wrong
+    }
 }
 
 // enable dynamic payload
 void rfEnableGlobalDynamicPayload(void)
 {
+    rfWriteRegChar(FEATURE, SET_BIT(rfReadRegChar(FEATURE), EN_DPL));
+}
 
+// enable dynamic payload
+void rfDisableGlobalDynamicPayload(void)
+{
+    rfWriteRegChar(FEATURE, CLEAR_BIT(rfReadRegChar(FEATURE), EN_DPL));
 }
 
 // enable Ack payload
 void rfEnableGlobalAckPayload(void)
 {
+    rfWriteRegChar(FEATURE, SET_BIT(rfReadRegChar(FEATURE), EN_ACK_PAY));
+}
 
+// disable Ack payload
+void rfDisableGlobalAckPayload(void)
+{
+    rfWriteRegChar(FEATURE, CLEAR_BIT(rfReadRegChar(FEATURE), EN_ACK_PAY));
 }
 
 // enables dynamic payload
 void rfEnableGlobalDynamicAckPayload(void)
 {
+    rfWriteRegChar(FEATURE, SET_BIT(rfReadRegChar(FEATURE), EN_DYN_ACK));
+}
 
+// disable dynamic payload
+void rfDisableGlobalDynamicAckPayload(void)
+{
+    rfWriteRegChar(FEATURE, CLEAR_BIT(rfReadRegChar(FEATURE), EN_DYN_ACK));
 }
 
 // status about the TX FIFO status
 uint8_t rfTxFifoStatus(void)
 {
-    return 0;
+    uint8_t status = rfReadRegChar(FIFO_STATUS);
+    return (CHECK_BIT(status,TX_FULL));
 }
 
 // status about the RX FIFO status
 uint8_t rfRxFifoStatus(void)
 {
-    return 0;
+    uint8_t status = rfReadRegChar(FIFO_STATUS);
+    return (CHECK_BIT(status,RX_FULL));
 }
 
 /** \brief
@@ -540,12 +614,20 @@ ISR(EXT_INT)
 
     if(CHECK_BIT(status, RX_DR))
     {
+        SET_BIT(status, RX_DR);
         rfReceived();
-        rfReadPayload(32);
+        uint8_t length = rfReadRegChar(R_RX_PL_WID);
+        rfReadPayload(length);
     }
 
     if(CHECK_BIT(status, TX_DS))
     {
+        SET_BIT(status, TX_DS);
         rfTransmited();
+    }
+
+    if(CHECK_BIT(status, MAX_RT))
+    {
+        SET_BIT(status, MAX_RT);
     }
 }

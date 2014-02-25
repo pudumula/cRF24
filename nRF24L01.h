@@ -81,7 +81,7 @@
 #define TX_DS       5
 #define MAX_RT      4
 #define RX_P_NO     1
-#define TX_FULL     0
+#define TX_FULL     5
 #define PLOS_CNT    4
 #define ARC_CNT     0
 #define TX_REUSE    6

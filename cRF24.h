@@ -169,11 +169,20 @@ void rfClearDynamicPayloadForPipe(uint8_t dymamic);
 // enable dynamic payload
 void rfEnableGlobalDynamicPayload(void);
 
+// disable dynamic payload
+void rfDisableGlobalDynamicPayload(void);
+
 // enable Ack payload
 void rfEnableGlobalAckPayload(void);
 
+// disable Ack payload
+void rfDisableGlobalAckPayload(void);
+
 // enables dynamic payload
 void rfEnableGlobalDynamicAckPayload(void);
+
+// disable dynamic payload
+void rfDisableGlobalDynamicAckPayload(void);
 
 // status about the TX FIFO status
 uint8_t rfTxFifoStatus(void);
