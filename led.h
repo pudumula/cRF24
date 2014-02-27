@@ -20,8 +20,6 @@
 
 #include<avr/io.h>
 
-#define USE_LED_TX_RX
-
 #ifdef USE_LED_TX_RX
 #define LED_DDR     DDRC
 #define LED_PORT    PORTC
