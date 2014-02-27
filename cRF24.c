@@ -18,6 +18,9 @@
 #include "cRF24.h"
 #include "spi.h"
 #include "nRF24L01.h"
+#ifdef USE_LED_TX_RX
+#include "led.h"
+#endif
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <inttypes.h>
@@ -36,6 +39,7 @@ void rfTransmit(uint8_t* buff, uint8_t len)
     CE_HIGH;
     _delay_us(10);
     CE_LOW;
+	LED_ON;
 }
 
 // handles the reception of rfPacket and filling of the buffer
@@ -615,14 +619,17 @@ ISR(EXT_INT)
     if(CHECK_BIT(status, RX_DR))
     {
         SET_BIT(status, RX_DR);
+		LED_ON;
         rfReceived();
         uint8_t length = rfReadRegChar(R_RX_PL_WID);
         rfReadPayload(length);
+		LED_OFF;
     }
 
     if(CHECK_BIT(status, TX_DS))
     {
         SET_BIT(status, TX_DS);
+		LED_OFF;
         rfTransmited();
     }
 
