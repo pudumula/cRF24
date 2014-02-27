@@ -15,14 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define USE_LED_TX_RX
+//#define USE_LED_TX_RX
  
 #include "cRF24.h"
 #include "spi.h"
 #include "nRF24L01.h"
-#ifdef USE_LED_TX_RX
 #include "led.h"
-#endif
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <inttypes.h>
