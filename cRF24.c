@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-//#define USE_LED_TX_RX
  
 #include "cRF24.h"
 #include "spi.h"
@@ -24,6 +22,9 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <inttypes.h>
+
+// uncomment this if you want an led to blink on TX and RX
+//#define USE_LED_TX_RX 
 
 volatile uint8_t receivedFlag = 0;
 volatile uint8_t transmittedFlag = 0;
