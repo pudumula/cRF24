@@ -1,0 +1,51 @@
+#include <avr/io.h>
+#include "cRF24.h"
+
+uint8_t rx_buff[];
+uint8_t state = RX_MODE;
+
+void app(void)
+{
+	if (data)
+	{
+		state = TX_MODE;
+		transmit();
+	}
+}
+
+void transmit(void)
+{
+	loop_until_transmitted;
+	Start_listning();
+}
+
+int main(void)
+{
+    init();
+	while(1)
+	{
+		if (state == RX_DATA)
+		{
+			process_rx();
+			state = RX_MODE;
+		}
+		else if (state == RX_MODE)
+		{
+			Start_listning();
+			state = APP;
+		}
+		else if (state == APP)
+		{
+			app();
+		}
+	}
+    return 0;
+}
+
+ISR()
+{
+// for rx
+state = RX_DATA;
+// for tx done
+state = RX_MODE;
+}
