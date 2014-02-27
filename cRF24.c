@@ -231,7 +231,7 @@ void rfSetTransmitPower(uint8_t power)
 void rfSetDataRate(uint8_t dataRate)
 {
     // check bounds
-    rfWriteRegChar(RF_SETUP, SET_VALUE(rfReadRegChar(RF_SETUP), (((1<<3) & dataRate)<<3) | ((1<<5) & dataRate<<5)));
+    rfWriteRegChar(RF_SETUP, SET_VALUE(rfReadRegChar(RF_SETUP), (((1<<3) & dataRate<<3)) | ((1<<5) & dataRate<<5)));
 }
 
 // sets receive address width
@@ -629,5 +629,6 @@ ISR(EXT_INT)
     if(CHECK_BIT(status, MAX_RT))
     {
         SET_BIT(status, MAX_RT);
+		// packet transmit failed
     }
 }
