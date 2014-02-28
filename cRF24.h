@@ -30,13 +30,25 @@
 #define CE_HIGH  CE_H
 #define CE_LOW   CE_L
 
-#define CHECK_BIT(VAL,MASK)    (VAL & (1<<MASK))
-#define SET_BIT(VAL,MASK)      (VAL | (1<<MASK))
-#define CLEAR_BIT(VAL,MASK)    (VAL & ~(1<<MASK))
+#define CHECK_BIT(VAL,MASK)      (VAL & (1<<MASK))
+#define SET_BIT(VAL,MASK)        (VAL | (1<<MASK))
+#define CLEAR_BIT(VAL,MASK)      (VAL & ~(1<<MASK))
 
 #define CHECK_VALUE(VAL,MASK)    (VAL & (MASK))
 #define SET_VALUE(VAL,MASK)      (VAL | (MASK))
 #define CLEAR_VALUE(VAL,MASK)    (VAL & ~(MASK))
+
+typedef enum
+{
+	RX_MODE,
+	RX_LISTENING,
+	RX_DATA,
+	TX_MODE,
+	TX_TRANSMITTING,
+	TX_TRANSMITTED,
+	TX_RETRANSMIT_FAIL,
+	IDLE
+} RFstate_t;
 
 // handles the transmission of rfPacket
 void rfTransmit(uint8_t* buff, uint8_t len);

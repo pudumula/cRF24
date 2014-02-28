@@ -1,20 +1,22 @@
 #include <avr/io.h>
 #include "cRF24.h"
 
-uint8_t rx_buff[];
-uint8_t state = RX_MODE;
+#define RX_BUFFER_SIZE 32
+
+uint8_t rx_buff[RX_BUFFER_SIZE];
+state = APP;
 
 void app(void)
 {
 	if (data)
 	{
-		state = TX_MODE;
 		transmit();
 	}
 }
 
 void transmit(void)
 {
+	state = TX_MODE;
 	loop_until_transmitted;
 	Start_listning();
 }
@@ -27,14 +29,9 @@ int main(void)
 		if (state == RX_DATA)
 		{
 			process_rx();
-			state = RX_MODE;
-		}
-		else if (state == RX_MODE)
-		{
-			Start_listning();
 			state = APP;
 		}
-		else if (state == APP)
+		else if (state == RX_LISTENING)
 		{
 			app();
 		}
@@ -42,10 +39,20 @@ int main(void)
     return 0;
 }
 
+void init()
+{
+	...;
+	...;
+	Start_listning();
+}
+
 ISR()
 {
 // for rx
 state = RX_DATA;
 // for tx done
-state = RX_MODE;
+state = APP;
+Start_listning();
+// for retransmit failure
+state = TX_RETRANSMIT_FAIL;
 }

@@ -23,9 +23,6 @@
 #include <avr/interrupt.h>
 #include <inttypes.h>
 
-// uncomment this if you want an led to blink on TX and RX
-//#define USE_LED_TX_RX 
-
 volatile uint8_t receivedFlag = 0;
 volatile uint8_t transmittedFlag = 0;
 volatile uint8_t rfBuffer[32];
