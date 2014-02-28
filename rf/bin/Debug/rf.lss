@@ -3,27 +3,27 @@ bin\Debug\rf.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000744  00000000  00000000  00000094  2**1
+  0 .text         00000746  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000002  00800060  00000744  000007d8  2**0
+  1 .data         00000002  00800060  00000746  000007da  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000025  00800062  00800062  000007da  2**0
+  2 .bss          00000025  00800062  00800062  000007dc  2**0
                   ALLOC
-  3 .debug_aranges 00000060  00000000  00000000  000007da  2**0
+  3 .debug_aranges 00000060  00000000  00000000  000007dc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 0000050b  00000000  00000000  0000083a  2**0
+  4 .debug_pubnames 0000050b  00000000  00000000  0000083c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000d40  00000000  00000000  00000d45  2**0
+  5 .debug_info   00000d40  00000000  00000000  00000d47  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000041b  00000000  00000000  00001a85  2**0
+  6 .debug_abbrev 0000041b  00000000  00000000  00001a87  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000c24  00000000  00000000  00001ea0  2**0
+  7 .debug_line   00000c2c  00000000  00000000  00001ea2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000003b0  00000000  00000000  00002ac4  2**2
+  8 .debug_frame  000003b0  00000000  00000000  00002ad0  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000005cf  00000000  00000000  00002e74  2**0
+  9 .debug_str    000005cf  00000000  00000000  00002e80  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000657  00000000  00000000  00003443  2**0
+ 10 .debug_loc    00000657  00000000  00000000  0000344f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -61,7 +61,7 @@ Disassembly of section .text:
   32:	10 e0       	ldi	r17, 0x00	; 0
   34:	a0 e6       	ldi	r26, 0x60	; 96
   36:	b0 e0       	ldi	r27, 0x00	; 0
-  38:	e4 e4       	ldi	r30, 0x44	; 68
+  38:	e6 e4       	ldi	r30, 0x46	; 70
   3a:	f7 e0       	ldi	r31, 0x07	; 7
   3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
 
@@ -87,8 +87,8 @@ Disassembly of section .text:
   52:	a7 38       	cpi	r26, 0x87	; 135
   54:	b1 07       	cpc	r27, r17
   56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
-  58:	4e d3       	rcall	.+1692   	; 0x6f6 <main>
-  5a:	72 c3       	rjmp	.+1764   	; 0x740 <_exit>
+  58:	4f d3       	rcall	.+1694   	; 0x6f8 <main>
+  5a:	73 c3       	rjmp	.+1766   	; 0x742 <_exit>
 
 0000005c <__bad_interrupt>:
   5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
@@ -127,7 +127,7 @@ uint8_t rfStatus(void)
   6e:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData(NOP);
   70:	8f ef       	ldi	r24, 0xFF	; 255
-  72:	61 d3       	rcall	.+1730   	; 0x736 <spiSendData>
+  72:	62 d3       	rcall	.+1732   	; 0x738 <spiSendData>
     CSN_HIGH;
   74:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -145,7 +145,7 @@ uint8_t rfFlushTx(void)
   78:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( FLUSH_TX );
   7a:	81 ee       	ldi	r24, 0xE1	; 225
-  7c:	5c d3       	rcall	.+1720   	; 0x736 <spiSendData>
+  7c:	5d d3       	rcall	.+1722   	; 0x738 <spiSendData>
     CSN_HIGH;
   7e:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -163,7 +163,7 @@ uint8_t rfFlushRx(void)
   82:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( FLUSH_RX );
   84:	82 ee       	ldi	r24, 0xE2	; 226
-  86:	57 d3       	rcall	.+1710   	; 0x736 <spiSendData>
+  86:	58 d3       	rcall	.+1712   	; 0x738 <spiSendData>
     CSN_HIGH;
   88:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -207,7 +207,7 @@ uint8_t rfReadPayload(uint8_t len)
   a6:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( R_RX_PAYLOAD );
   a8:	81 e6       	ldi	r24, 0x61	; 97
-  aa:	45 d3       	rcall	.+1674   	; 0x736 <spiSendData>
+  aa:	46 d3       	rcall	.+1676   	; 0x738 <spiSendData>
   ac:	e8 2e       	mov	r14, r24
   ae:	0e c0       	rjmp	.+28     	; 0xcc <rfReadPayload+0x30>
     while ( len-- )
@@ -215,7 +215,7 @@ uint8_t rfReadPayload(uint8_t len)
   b0:	10 91 60 00 	lds	r17, 0x0060
   b4:	00 91 61 00 	lds	r16, 0x0061
   b8:	8f ef       	ldi	r24, 0xFF	; 255
-  ba:	3d d3       	rcall	.+1658   	; 0x736 <spiSendData>
+  ba:	3e d3       	rcall	.+1660   	; 0x738 <spiSendData>
   bc:	e1 2f       	mov	r30, r17
   be:	f0 2f       	mov	r31, r16
   c0:	81 93       	st	Z+, r24
@@ -262,13 +262,13 @@ uint8_t rfWriteAckPayload(const uint8_t* buf, uint8_t len)
   ea:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_ACK_PAYLOAD );
   ec:	88 ea       	ldi	r24, 0xA8	; 168
-  ee:	23 d3       	rcall	.+1606   	; 0x736 <spiSendData>
+  ee:	24 d3       	rcall	.+1608   	; 0x738 <spiSendData>
   f0:	08 2f       	mov	r16, r24
   f2:	03 c0       	rjmp	.+6      	; 0xfa <rfWriteAckPayload+0x1c>
     while ( len-- )
         spiSendData(*buf++);
   f4:	89 91       	ld	r24, Y+
-  f6:	1f d3       	rcall	.+1598   	; 0x736 <spiSendData>
+  f6:	20 d3       	rcall	.+1600   	; 0x738 <spiSendData>
   f8:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
@@ -310,13 +310,13 @@ uint8_t rfWritePayload(const uint8_t* buf, uint8_t len)
  118:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_TX_PAYLOAD );
  11a:	80 ea       	ldi	r24, 0xA0	; 160
- 11c:	0c d3       	rcall	.+1560   	; 0x736 <spiSendData>
+ 11c:	0d d3       	rcall	.+1562   	; 0x738 <spiSendData>
  11e:	08 2f       	mov	r16, r24
  120:	03 c0       	rjmp	.+6      	; 0x128 <rfWritePayload+0x1c>
     while ( len-- )
         spiSendData(*buf++);
  122:	89 91       	ld	r24, Y+
- 124:	08 d3       	rcall	.+1552   	; 0x736 <spiSendData>
+ 124:	09 d3       	rcall	.+1554   	; 0x738 <spiSendData>
  126:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
@@ -355,11 +355,11 @@ uint8_t rfWriteRegChar(uint8_t reg, uint8_t value)
  140:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_REGISTER | reg );
  142:	80 62       	ori	r24, 0x20	; 32
- 144:	f8 d2       	rcall	.+1520   	; 0x736 <spiSendData>
+ 144:	f9 d2       	rcall	.+1522   	; 0x738 <spiSendData>
  146:	18 2f       	mov	r17, r24
     spiSendData(value);
  148:	80 2f       	mov	r24, r16
- 14a:	f5 d2       	rcall	.+1514   	; 0x736 <spiSendData>
+ 14a:	f6 d2       	rcall	.+1516   	; 0x738 <spiSendData>
     CSN_HIGH;
  14c:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -389,13 +389,13 @@ uint8_t rfWriteRegBuff(uint8_t reg, const uint8_t* buf, uint8_t len)
  162:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( W_REGISTER | reg );
  164:	80 62       	ori	r24, 0x20	; 32
- 166:	e7 d2       	rcall	.+1486   	; 0x736 <spiSendData>
+ 166:	e8 d2       	rcall	.+1488   	; 0x738 <spiSendData>
  168:	08 2f       	mov	r16, r24
  16a:	03 c0       	rjmp	.+6      	; 0x172 <rfWriteRegBuff+0x1c>
     while ( len-- )
         spiSendData(*buf++);
  16c:	89 91       	ld	r24, Y+
- 16e:	e3 d2       	rcall	.+1478   	; 0x736 <spiSendData>
+ 16e:	e4 d2       	rcall	.+1480   	; 0x738 <spiSendData>
  170:	11 50       	subi	r17, 0x01	; 1
 {
     uint8_t status;
@@ -427,10 +427,10 @@ uint8_t rfReadRegChar(uint8_t reg)
     CSN_LOW;
  184:	c7 98       	cbi	0x18, 7	; 24
     spiSendData( R_REGISTER | reg );
- 186:	d7 d2       	rcall	.+1454   	; 0x736 <spiSendData>
+ 186:	d8 d2       	rcall	.+1456   	; 0x738 <spiSendData>
     uint8_t result = spiSendData(0xff);
  188:	8f ef       	ldi	r24, 0xFF	; 255
- 18a:	d5 d2       	rcall	.+1450   	; 0x736 <spiSendData>
+ 18a:	d6 d2       	rcall	.+1452   	; 0x738 <spiSendData>
     CSN_HIGH;
  18c:	c7 9a       	sbi	0x18, 7	; 24
 
@@ -1639,13 +1639,13 @@ uint8_t rfReadRegBuff(uint8_t reg, uint8_t* buf, uint8_t len)
     CSN_LOW;
  6a0:	c7 98       	cbi	0x18, 7	; 24
     status = spiSendData( R_REGISTER | reg );
- 6a2:	49 d0       	rcall	.+146    	; 0x736 <spiSendData>
+ 6a2:	4a d0       	rcall	.+148    	; 0x738 <spiSendData>
  6a4:	08 2f       	mov	r16, r24
  6a6:	04 c0       	rjmp	.+8      	; 0x6b0 <rfReadRegBuff+0x1c>
     while ( len-- )
         *buf++ = spiSendData(0xff);
  6a8:	8f ef       	ldi	r24, 0xFF	; 255
- 6aa:	45 d0       	rcall	.+138    	; 0x736 <spiSendData>
+ 6aa:	46 d0       	rcall	.+140    	; 0x738 <spiSendData>
  6ac:	89 93       	st	Y+, r24
  6ae:	11 50       	subi	r17, 0x01	; 1
 {
@@ -1738,124 +1738,127 @@ void init(void)
 	// enable listening
 	rfStartListening();
  6f2:	ae df       	rcall	.-164    	; 0x650 <rfStartListening>
+	// enable global interrupts
+	sei();
+ 6f4:	78 94       	sei
 }
- 6f4:	08 95       	ret
+ 6f6:	08 95       	ret
 
-000006f6 <main>:
+000006f8 <main>:
 
 int main(void)
 {
     init();
- 6f6:	f1 df       	rcall	.-30     	; 0x6da <init>
- 6f8:	ff cf       	rjmp	.-2      	; 0x6f8 <main+0x2>
+ 6f8:	f0 df       	rcall	.-32     	; 0x6da <init>
+ 6fa:	ff cf       	rjmp	.-2      	; 0x6fa <main+0x2>
 
-000006fa <spiInit>:
+000006fc <spiInit>:
 
 // initializing spi
 void spiInit(void)
 {
     // enabling spi
     SPCR |= (1<<SPE);
- 6fa:	6e 9a       	sbi	0x0d, 6	; 13
+ 6fc:	6e 9a       	sbi	0x0d, 6	; 13
     // selecting master mode
     SPCR |= (1<<MSTR);
- 6fc:	6c 9a       	sbi	0x0d, 4	; 13
+ 6fe:	6c 9a       	sbi	0x0d, 4	; 13
     // making pins output, the miso pin will be made input when spi is enabled
     SPI_DDR |= (1<<MOSI) | (1<<SCK);
- 6fe:	87 b3       	in	r24, 0x17	; 23
- 700:	88 62       	ori	r24, 0x28	; 40
- 702:	87 bb       	out	0x17, r24	; 23
+ 700:	87 b3       	in	r24, 0x17	; 23
+ 702:	88 62       	ori	r24, 0x28	; 40
+ 704:	87 bb       	out	0x17, r24	; 23
 }
- 704:	08 95       	ret
+ 706:	08 95       	ret
 
-00000706 <spiSendBuffer>:
+00000708 <spiSendBuffer>:
 
 // sending the data stored in the buffer.
 void spiSendBuffer(uint8_t *buffer, uint8_t len)
 {
- 706:	fc 01       	movw	r30, r24
+ 708:	fc 01       	movw	r30, r24
     do
     {
         SPI_DATA = *buffer;
- 708:	80 81       	ld	r24, Z
- 70a:	8f b9       	out	0x0f, r24	; 15
+ 70a:	80 81       	ld	r24, Z
+ 70c:	8f b9       	out	0x0f, r24	; 15
         SPI_SEND;
- 70c:	77 9b       	sbis	0x0e, 7	; 14
- 70e:	fe cf       	rjmp	.-4      	; 0x70c <spiSendBuffer+0x6>
+ 70e:	77 9b       	sbis	0x0e, 7	; 14
+ 710:	fe cf       	rjmp	.-4      	; 0x70e <spiSendBuffer+0x6>
         buffer++;
     }
     while(len--);
- 710:	66 23       	and	r22, r22
- 712:	19 f0       	breq	.+6      	; 0x71a <spiSendBuffer+0x14>
+ 712:	66 23       	and	r22, r22
+ 714:	19 f0       	breq	.+6      	; 0x71c <spiSendBuffer+0x14>
 {
     do
     {
         SPI_DATA = *buffer;
         SPI_SEND;
         buffer++;
- 714:	31 96       	adiw	r30, 0x01	; 1
+ 716:	31 96       	adiw	r30, 0x01	; 1
     }
     while(len--);
- 716:	61 50       	subi	r22, 0x01	; 1
- 718:	f7 cf       	rjmp	.-18     	; 0x708 <spiSendBuffer+0x2>
- 71a:	08 95       	ret
+ 718:	61 50       	subi	r22, 0x01	; 1
+ 71a:	f7 cf       	rjmp	.-18     	; 0x70a <spiSendBuffer+0x2>
+ 71c:	08 95       	ret
 
-0000071c <spiGetBuffer>:
+0000071e <spiGetBuffer>:
 }
 
 // gets the data from the radio and stores in the buffer
 void spiGetBuffer(uint8_t *buffer, uint8_t len)
 {
- 71c:	fc 01       	movw	r30, r24
+ 71e:	fc 01       	movw	r30, r24
     do
     {
         SPI_DATA = 0xff;
- 71e:	9f ef       	ldi	r25, 0xFF	; 255
- 720:	9f b9       	out	0x0f, r25	; 15
+ 720:	9f ef       	ldi	r25, 0xFF	; 255
+ 722:	9f b9       	out	0x0f, r25	; 15
         SPI_SEND;
- 722:	77 9b       	sbis	0x0e, 7	; 14
- 724:	fe cf       	rjmp	.-4      	; 0x722 <spiGetBuffer+0x6>
+ 724:	77 9b       	sbis	0x0e, 7	; 14
+ 726:	fe cf       	rjmp	.-4      	; 0x724 <spiGetBuffer+0x6>
         *buffer = SPI_DATA;
- 726:	8f b1       	in	r24, 0x0f	; 15
- 728:	80 83       	st	Z, r24
+ 728:	8f b1       	in	r24, 0x0f	; 15
+ 72a:	80 83       	st	Z, r24
         buffer++;
     }
     while(len--);
- 72a:	66 23       	and	r22, r22
- 72c:	19 f0       	breq	.+6      	; 0x734 <spiGetBuffer+0x18>
+ 72c:	66 23       	and	r22, r22
+ 72e:	19 f0       	breq	.+6      	; 0x736 <spiGetBuffer+0x18>
     do
     {
         SPI_DATA = 0xff;
         SPI_SEND;
         *buffer = SPI_DATA;
         buffer++;
- 72e:	31 96       	adiw	r30, 0x01	; 1
+ 730:	31 96       	adiw	r30, 0x01	; 1
     }
     while(len--);
- 730:	61 50       	subi	r22, 0x01	; 1
- 732:	f6 cf       	rjmp	.-20     	; 0x720 <spiGetBuffer+0x4>
- 734:	08 95       	ret
+ 732:	61 50       	subi	r22, 0x01	; 1
+ 734:	f6 cf       	rjmp	.-20     	; 0x722 <spiGetBuffer+0x4>
+ 736:	08 95       	ret
 
-00000736 <spiSendData>:
+00000738 <spiSendData>:
 // sends any command
 uint8_t spiSendData(uint8_t data)
 {
     uint8_t result;
 
     SPI_DATA = data;
- 736:	8f b9       	out	0x0f, r24	; 15
+ 738:	8f b9       	out	0x0f, r24	; 15
     SPI_SEND;
- 738:	77 9b       	sbis	0x0e, 7	; 14
- 73a:	fe cf       	rjmp	.-4      	; 0x738 <spiSendData+0x2>
+ 73a:	77 9b       	sbis	0x0e, 7	; 14
+ 73c:	fe cf       	rjmp	.-4      	; 0x73a <spiSendData+0x2>
     result = SPI_DATA;
- 73c:	8f b1       	in	r24, 0x0f	; 15
+ 73e:	8f b1       	in	r24, 0x0f	; 15
     // returns the status
     return result;
 }
- 73e:	08 95       	ret
+ 740:	08 95       	ret
 
-00000740 <_exit>:
- 740:	f8 94       	cli
+00000742 <_exit>:
+ 742:	f8 94       	cli
 
-00000742 <__stop_program>:
- 742:	ff cf       	rjmp	.-2      	; 0x742 <__stop_program>
+00000744 <__stop_program>:
+ 744:	ff cf       	rjmp	.-2      	; 0x744 <__stop_program>

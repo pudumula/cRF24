@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "main.h"
 #include "cRF24.h"
 #include "spi.h"
@@ -31,6 +32,8 @@ void init(void)
 	rfSetDynamicPayloadForPipe(DPL_P0);
 	// enable listening
 	rfStartListening();
+	// enable global interrupts
+	sei();
 }
 
 int main(void)
