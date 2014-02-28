@@ -23,8 +23,21 @@
 // Build switches
 
 // uncomment this if you want an led to blink on TX and RX
-// #define USE_LED_TX_RX 
+#define USE_LED_TX_RX
 
 /**************************************************************/
 
+typedef enum
+{
+    APP_IDLE,
+    APP_RUN,
+    APP_DATA_RECEIVED,
+} appState_t;
+
+/**************************************************************/
+
+void app(appState_t);
+void processData(void);
+
+/**************************************************************/
 #endif // #ifndef _MAIN_H_

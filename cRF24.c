@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include "cRF24.h"
 #include "spi.h"
 #include "nRF24L01.h"
@@ -26,7 +26,9 @@
 volatile uint8_t receivedFlag = 0;
 volatile uint8_t transmittedFlag = 0;
 volatile uint8_t rfBuffer[32];
+volatile uint8_t rfLength;
 volatile uint8_t *rfPtrBuffer = rfBuffer;
+rfState_t rfState = RF_IDLE;
 
 // handles the transmission of rfPacket
 void rfTransmit(uint8_t* buff, uint8_t len)
@@ -38,6 +40,8 @@ void rfTransmit(uint8_t* buff, uint8_t len)
     _delay_us(10);
     CE_LOW;
 	LED_ON;
+
+	rfState = RF_TRANSMITTING;
 }
 
 // handles the reception of rfPacket and filling of the buffer
@@ -169,6 +173,7 @@ void rfStartListening(void)
 {
     rfToStandbyOne();
     rfSetToReceiveMode();
+    rfState = RF_LISTENING;
 }
 
 // stops listening
@@ -177,6 +182,7 @@ void rfStopListening(void)
     CE_LOW;
     rfFlushTx();
     rfFlushRx();
+    rfState = RF_IDLE;
 }
 
 // flush rx FIFO
@@ -617,9 +623,11 @@ ISR(EXT_INT)
     if(CHECK_BIT(status, RX_DR))
     {
         SET_BIT(status, RX_DR);
+        rfState = RF_DATA_RECEIVED;
 		LED_ON;
         rfReceived();
         uint8_t length = rfReadRegChar(R_RX_PL_WID);
+        rfLength = length;
         rfReadPayload(length);
 		LED_OFF;
     }
@@ -627,6 +635,7 @@ ISR(EXT_INT)
     if(CHECK_BIT(status, TX_DS))
     {
         SET_BIT(status, TX_DS);
+        rfState = RF_TRANSMIT_SUCCESS;
 		LED_OFF;
         rfTransmited();
     }
@@ -635,5 +644,6 @@ ISR(EXT_INT)
     {
         SET_BIT(status, MAX_RT);
 		// packet transmit failed
+		rfState = RF_TRANSMIT_FAIL;
     }
 }

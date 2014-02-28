@@ -40,15 +40,13 @@
 
 typedef enum
 {
-	RX_MODE,
-	RX_LISTENING,
-	RX_DATA,
-	TX_MODE,
-	TX_TRANSMITTING,
-	TX_TRANSMITTED,
-	TX_RETRANSMIT_FAIL,
-	IDLE
-} RFstate_t;
+    RF_IDLE = 0,
+	RF_LISTENING,
+	RF_DATA_RECEIVED,
+	RF_TRANSMITTING,
+	RF_TRANSMIT_SUCCESS,
+	RF_TRANSMIT_FAIL,
+} rfState_t;
 
 // handles the transmission of rfPacket
 void rfTransmit(uint8_t* buff, uint8_t len);
